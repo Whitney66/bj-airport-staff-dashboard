@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>企微-员工看板高保真原型</title>
+  <style>
+    :root {
+      --bg: #ededed;
+      --page: #f5f5f5;
+      --card: #ffffff;
+      --soft: #eeeeee;
+      --line: #dedede;
+      --text: #111111;
+      --muted: #9b9b9b;
+      --blue: #2f7df0;
+      --blue-soft: #6f89ff;
+      --orange: #f29a25;
+      --red: #ff5f66;
+      --gold: #d3a72d;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+    body { display: flex; justify-content: center; padding: 18px 0 34px; }
+    button { font: inherit; border: 0; background: none; color: inherit; padding: 0; cursor: pointer; }
+
+    .phone {
+      width: 430px;
+      height: 932px;
+      position: relative;
+      background: #050505;
+      border-radius: 64px;
+      padding: 14px;
+      box-shadow: 0 16px 36px rgba(0,0,0,.24), inset 0 0 0 2px #1d2328, inset 0 0 0 5px #101418;
+    }
+    .phone::before { content: ""; position: absolute; left: 50%; top: 8px; width: 148px; height: 30px; transform: translateX(-50%); background: #050505; border-radius: 0 0 24px 24px; z-index: 8; }
+    .phone::after { content: ""; position: absolute; left: 50%; bottom: 27px; width: 142px; height: 5px; transform: translateX(-50%); background: #000; border-radius: 8px; z-index: 9; }
+    .speaker { position: absolute; left: 50%; top: 11px; width: 92px; height: 8px; transform: translateX(-50%); border-radius: 8px; background: #171717; box-shadow: inset 0 0 0 1px #303030; z-index: 9; }
+    .camera { position: absolute; left: calc(50% - 82px); top: 25px; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 55% 45%, #314fd6 0 16%, #09103e 17% 36%, #030306 37%); z-index: 9; }
+    .screen {
+      position: relative;
+      height: 100%;
+      background: var(--page);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .statusbar { height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; background: #fff; font-size: 15px; font-weight: 700; }
+    .icons { display: flex; gap: 6px; align-items: center; }
+    .signal { display: flex; gap: 3px; align-items: end; height: 15px; }
+    .signal span { width: 4px; background: #2d3034; border-radius: 2px; }
+    .signal span:nth-child(1){height:6px}.signal span:nth-child(2){height:9px}.signal span:nth-child(3){height:12px}.signal span:nth-child(4){height:15px}
+    .wifi { width: 18px; height: 13px; border: 4px solid #2d3034; border-left-color: transparent; border-right-color: transparent; border-bottom: 0; border-radius: 18px 18px 0 0; position: relative; }
+    .wifi::after { content: ""; position: absolute; left: 5px; bottom: -5px; width: 6px; height: 6px; background: #2d3034; border-radius: 50%; }
+    .battery { width: 27px; height: 14px; border: 2px solid #707070; border-radius: 3px; position: relative; }
+    .battery::before { content: ""; position: absolute; right: -4px; top: 3px; width: 2px; height: 6px; background: #707070; border-radius: 0 2px 2px 0; }
+    .battery::after { content: ""; position: absolute; left: 2px; top: 2px; width: 19px; height: 6px; background: #303030; border-radius: 1px; }
+
+    .app { height: calc(100% - 50px); overflow-y: auto; scrollbar-width: none; background: var(--page); }
+    .app::-webkit-scrollbar { display: none; }
+    .topbar { position: sticky; top: 0; z-index: 4; height: 58px; background: #fff; display: grid; grid-template-columns: 56px 1fr 56px; align-items: center; border-bottom: 1px solid #f2f2f2; }
+    .title { text-align: center; font-size: 18px; font-weight: 500; }
+    .back { width: 34px; height: 34px; margin-left: 18px; display: grid; place-items: center; }
+    .back svg { width: 24px; height: 24px; stroke-width: 3; }
+
+    .page { display: none; min-height: 100%; padding-bottom: 30px; }
+    .page.active { display: block; }
+    .toolbar { display: grid; grid-template-columns: 1fr 1fr; background: var(--soft); height: 72px; align-items: center; padding: 0 34px; font-size: 17px; }
+    .select { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .chev { width: 12px; height: 12px; border-right: 2px solid #64717a; border-bottom: 2px solid #64717a; transform: rotate(45deg); margin-top: -6px; }
+    .period { text-align: center; color: #c3c3c3; font-size: 12px; font-weight: 600; padding-top: 12px; }
+    .notice { display: flex; align-items: center; gap: 9px; padding: 8px 22px 12px; font-weight: 700; font-size: 14px; }
+    .notice .price, .accent { color: var(--orange); font-weight: 500; font-size: 16px; }
+    .megaphone { width: 18px; height: 18px; color: #555; flex: none; }
+
+    .card { margin: 0 18px 16px; background: var(--card); border-radius: 8px; }
+    .hero-kpi { text-align: center; padding: 10px 14px 16px; }
+    .card-title { font-weight: 700; font-size: 16px; }
+    .big { font-size: 26px; line-height: 1.3; margin: 6px 0; }
+    .trend-up { color: var(--red); font-size: 13px; font-weight: 700; }
+    .target-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 20px 10px; font-size: 15px; }
+    .progress { margin: 10px 20px 18px; height: 17px; background: #c8c8c8; overflow: hidden; position: relative; }
+    .progress span { display: block; height: 100%; width: 50%; background: var(--blue-soft); color: #fff; text-align: right; padding-right: 6px; line-height: 17px; font-size: 14px; font-weight: 700; }
+    .twins { display: grid; grid-template-columns: 1fr 1px 1fr; align-items: center; min-height: 86px; padding: 14px 22px; }
+    .divider { height: 56px; background: #cfcfcf; }
+    .metric-link { text-align: left; padding: 0 14px; }
+    .metric-link .num { color: #348ee9; font-size: 22px; margin-bottom: 8px; }
+    .metric-link button { font-size: 13px; font-weight: 700; }
+    .grid6 { display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 25px; padding: 23px 12px 26px; text-align: center; }
+    .grid6 .num { font-size: 24px; margin-bottom: 8px; }
+    .grid6 .label { font-size: 13px; font-weight: 700; }
+    .chart-card { padding: 18px 14px 12px; }
+    .section-title { font-size: 17px; font-weight: 800; margin: 0 0 14px 0; }
+    .chart-wrap { position: relative; height: 260px; }
+    .tooltip { position: absolute; transform: translate(-50%, -120%); background: rgba(21,32,43,.92); color: #fff; border-radius: 5px; padding: 5px 8px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity .12s; white-space: nowrap; }
+    .chart-wrap:hover .tooltip.visible { opacity: 1; }
+
+    .sales-card { padding: 17px 10px 26px; overflow: hidden; }
+    .sales-head { display: flex; align-items: center; justify-content: space-between; padding: 0 8px 18px; }
+    .sales-head .select { width: 110px; color: #3f4d58; }
+    .table-scroller { overflow-x: auto; }
+    table { border-collapse: collapse; min-width: 525px; width: 525px; background: #fff; font-size: 14px; }
+    th, td { border: 1px solid var(--line); padding: 9px 8px; text-align: center; white-space: nowrap; }
+    th { font-weight: 500; }
+    td:first-child, th:first-child { text-align: left; }
+
+    .profile { background: #fff; border-bottom: 5px solid #f0f0f0; padding: 24px 28px 16px; display: grid; grid-template-columns: 74px 1fr 102px; align-items: center; gap: 12px; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#d9e4ef,#8798a8); }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .name { font-size: 18px; margin-bottom: 8px; }
+    .id { color: #9b9b9b; font-size: 14px; }
+    .watch { text-align: right; }
+    .watch .times { font-size: 20px; margin-bottom: 8px; position: relative; display: inline-block; }
+    .badge { position: absolute; right: 4px; top: -28px; background: #ffd24b; border-radius: 5px; padding: 3px 8px; font-size: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+    .tabs { display: grid; grid-template-columns: repeat(4, 1fr); height: 52px; background: #fff; align-items: center; text-align: center; font-size: 17px; }
+    .tabs button.active { color: #6684ff; font-weight: 700; }
+    .employee-pad { padding: 0 14px 18px; }
+    .notice.employee { padding-left: 8px; padding-right: 8px; }
+    .inline-row { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 12px; font-size: 15px; font-weight: 600; }
+    .employee-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 16px; }
+    .soft-tile { background: var(--soft); border-radius: 8px; min-height: 86px; text-align: center; padding: 12px 8px; }
+    .rank-line { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 11px 0 8px; font-size: 12px; }
+    .trophy { width: 22px; height: 22px; }
+    .employee-grid { background: var(--soft); border-radius: 8px; margin-bottom: 18px; }
+    .goal-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: 18px; }
+    .goal-duo .soft-tile { border-radius: 8px; }
+    .bar-card { padding: 18px 6px 8px; background: transparent; margin: 0; }
+    .bar-card .chart-wrap { height: 278px; }
+
+    .return-list { padding: 18px 12px 28px; }
+    .return-card { background: #fff; border-radius: 8px; padding: 18px 12px; margin-bottom: 12px; font-size: 13px; }
+    .return-grid { display: grid; grid-template-columns: 1fr 1.35fr; column-gap: 10px; row-gap: 22px; align-items: center; }
+    .return-card .label { font-weight: 700; }
+    .return-card .toggle { color: var(--blue); display: inline-flex; width: 18px; height: 18px; vertical-align: middle; align-items: center; justify-content: center; }
+    .return-details { margin-top: 12px; overflow: hidden; max-height: 0; transition: max-height .2s ease; }
+    .return-card.open .return-details { max-height: 150px; }
+    .return-details table { width: 100%; min-width: 100%; font-size: 12px; }
+    .return-details th, .return-details td { text-align: left; padding: 7px 6px; }
+    .linkish { color: #348ee9; }
+
+    .page-switcher { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 8px; z-index: 20; background: rgba(255,255,255,.92); border: 1px solid #ddd; border-radius: 999px; padding: 6px; box-shadow: 0 8px 20px rgba(0,0,0,.14); }
+    .page-switcher button { padding: 7px 10px; border-radius: 999px; font-size: 12px; color: #43505a; }
+    .page-switcher button.active { background: #1e293b; color: #fff; }
+
+    .anno { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); z-index: 7; display: none; }
+    .anno::after { content: ""; position: absolute; left: 12px; top: 5px; width: 54px; height: 2px; background: var(--gold); }
+    .team .anno.a1 { display:block; right: 31px; top: 386px; }
+    .employee .anno.a2 { display:block; right: 27px; top: 296px; }
+
+    @media (max-width: 520px) {
+      body { padding: 0; background: #000; }
+      .phone { width: 100vw; height: 100vh; border-radius: 0; padding: 0; box-shadow: none; }
+      .screen { border-radius: 0; }
+      .phone::before, .phone::after, .speaker, .camera, .page-switcher { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="speaker"></div><div class="camera"></div>
+    <div class="screen">
+      <div class="statusbar"><span>12:00</span><div class="icons"><div class="signal"><span></span><span></span><span></span><span></span></div><div class="wifi"></div><div class="battery"></div></div></div>
+      <main class="app">
+        <section class="page team active" id="teamPage">
+          <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title">团队看板</div><div></div></header>
+          <div class="toolbar"><button class="select">全部柜组<span class="chev"></span></button><button class="select">今日<span class="chev"></span></button></div>
+          <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
+          <div class="notice"><svg class="megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 11h4l9-5v12l-9-5H3z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span>统计柜组单笔最高成交金额</span><span class="price">235,125</span><span>元</span></div>
+          <div class="card hero-kpi"><div class="card-title">销售收入</div><div class="big">253</div><div class="trend-up">环比  ↑ 50%</div></div>
+          <div class="target-row"><span>目标达成</span><span>目标： 50元</span></div><div class="progress"><span>50%</span></div>
+          <div class="card twins"><div class="metric-link"><div class="num">253</div><button data-target="returns">退货金额  ›</button></div><div class="divider"></div><div class="metric-link"><div class="num">253</div><button data-target="returns">退货件数  ›</button></div></div>
+          <div class="card grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">成交单数</div></div><div><div class="num">100</div><div class="label">购物人数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">票单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div></div>
+          <div class="card chart-card"><h2 class="section-title">销售趋势</h2><div class="chart-wrap" data-chart="line"><svg viewBox="0 0 340 240" width="100%" height="100%" aria-label="销售趋势折线图"><g stroke="#e6e6e6" stroke-width="1"><line x1="54" y1="28" x2="314" y2="28"/><line x1="54" y1="70" x2="314" y2="70"/><line x1="54" y1="112" x2="314" y2="112"/><line x1="54" y1="154" x2="314" y2="154"/><line x1="54" y1="196" x2="314" y2="196"/></g><g fill="#40515d" font-size="13"><text x="28" y="32">250</text><text x="28" y="74">200</text><text x="28" y="116">150</text><text x="28" y="158">100</text><text x="36" y="200">50</text></g><path d="M80 154 L132 120 L184 36 L236 154 L288 129 L288 196 L80 196 Z" fill="#2f7df0" opacity=".18"/><path d="M80 154 L132 120 L184 36 L236 154 L288 129" fill="none" stroke="#4e86e9" stroke-width="2.3" stroke-linejoin="round"/><g fill="#fff" stroke="#4e86e9" stroke-width="2.3"><circle cx="80" cy="154" r="3.3"/><circle cx="132" cy="120" r="3.3"/><circle cx="184" cy="36" r="3.3"/><circle cx="236" cy="154" r="3.3"/><circle cx="288" cy="129" r="3.3"/></g><line x1="54" y1="196" x2="314" y2="196" stroke="#65717b"/><g fill="#40515d" font-size="13"><text x="76" y="216">9</text><text x="128" y="216">10</text><text x="180" y="216">11</text><text x="232" y="216">12</text><text x="284" y="216">13</text></g></svg><div class="tooltip">11日：230</div></div></div>
+          <div class="card sales-card"><div class="sales-head"><h2 class="section-title">销售情况</h2><button class="select">按团队<span class="chev"></span></button></div><div class="table-scroller"><table><thead><tr><th>团队名称</th><th>销售收入</th><th>客单价</th><th>销售排名</th><th>成交单数</th></tr></thead><tbody><tr><td>[68681208]IWC团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr></tbody></table></div></div>
+          <i class="anno a1"></i>
+        </section>
+
+        <section class="page employee" id="employeePage">
+          <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="employeeTitle">员工看板</div><div></div></header>
+          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23d8e0e7'/%3E%3Crect x='12' y='18' width='56' height='38' rx='3' fill='%2327394a'/%3E%3Cpath d='M17 50h46v4H17z' fill='%2398c2df'/%3E%3Cpath d='M22 25h28M22 31h34M22 37h24' stroke='%2377e2cf' stroke-width='2'/%3E%3Crect x='6' y='58' width='68' height='12' fill='%23edf1f4'/%3E%3C/svg%3E"></div><div><div class="name">王丽萍</div><div class="id">122353</div></div><div class="watch"><div class="times"><span class="badge">3</span>4次</div><div class="id">本月被观察次数</div></div></div>
+          <div class="tabs"><button data-range="昨日">昨日</button><button class="active" data-range="今日">今日</button><button data-range="本月">本月</button><button data-range="今年">今年</button></div>
+          <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
+          <div class="employee-pad">
+            <div class="notice employee"><svg class="megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 11h4l9-5v12l-9-5H3z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span id="noticeText">本人单笔最高成交金额</span><span class="price">235,125</span><span>元</span></div>
+            <div class="inline-row" id="bizLine"><span>销售业绩</span><span></span></div>
+            <div class="employee-kpis" id="topKpis"><div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">销售排名</div><div class="rank-line"><svg class="trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>超过本柜组<span class="accent">50%</span>的销售</span></div><strong>相较昨日上升1名</strong></div></div>
+            <div class="target-row" style="padding:0 0 2px"><span id="targetTitle">目标达成(剩余:12,156元)</span><span id="targetRight">日目标： 50元</span></div><div class="progress" style="margin:10px 0 18px"><span>50%</span></div>
+            <div class="goal-duo" id="goalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
+            <div class="employee-grid grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">客单价</div></div><div><div class="num linkish">253</div><div class="label">退货金额 ›</div></div><div><div class="num linkish">253</div><div class="label">退货件数 ›</div></div></div>
+            <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
+          </div><i class="anno a2"></i>
+        </section>
+
+        <section class="page" id="returnPage">
+          <header class="topbar"><button class="back" data-target="employee" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title">退货明细</div><div></div></header>
+          <div class="return-list">
+            <article class="return-card open"><div class="return-grid"><div><span class="label">销售单号：</span>144987052</div><div></div><div><span class="label">顾客姓名：</span>温涛涛</div><div><span class="label">退货时间：</span>2023-10-11 20:00:23</div><div><span class="label">退货商品：</span>5件 <button class="toggle" aria-label="展开">⌄</button></div><div><span class="label">退货金额：</span> 20,235</div></div><div class="return-details"><table><thead><tr><th>商品编码</th><th>名称</th><th>数量</th><th>金额</th></tr></thead><tbody><tr><td>F106457</td><td>雅诗兰黛</td><td>2</td><td>1000</td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td></tr></tbody></table></div></article>
+            <article class="return-card"><div class="return-grid"><div><span class="label">销售单号：</span>144987052</div><div></div><div><span class="label">顾客姓名：</span>温涛涛</div><div><span class="label">退货时间：</span>2023-10-11 20:00:20</div><div><span class="label">退货商品：</span>3件 <button class="toggle" aria-label="展开">⌃</button></div><div><span class="label">退货金额：</span> 20,235</div></div><div class="return-details"><table><thead><tr><th>商品编码</th><th>名称</th><th>数量</th><th>金额</th></tr></thead><tbody><tr><td>F106458</td><td>兰蔻精华</td><td>1</td><td>8235</td></tr></tbody></table></div></article>
+            <article class="return-card"><div class="return-grid"><div><span class="label">销售单号：</span>144987052</div><div></div><div><span class="label">顾客姓名：</span>温涛涛</div><div><span class="label">退货时间：</span>2023-10-11 20:00:10</div><div><span class="label">退货商品：</span>6件 <button class="toggle" aria-label="展开">⌃</button></div><div><span class="label">退货金额：</span> 20,235</div></div><div class="return-details"><table><thead><tr><th>商品编码</th><th>名称</th><th>数量</th><th>金额</th></tr></thead><tbody><tr><td>F106459</td><td>资生堂</td><td>3</td><td>11000</td></tr></tbody></table></div></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <nav class="page-switcher" aria-label="页面切换"><button class="active" data-target="team">团队</button><button data-target="employee">员工</button><button data-target="returns">退货</button></nav>
+
+  <script>
+    const pages = { team: document.getElementById('teamPage'), employee: document.getElementById('employeePage'), returns: document.getElementById('returnPage') };
+    const switcher = document.querySelectorAll('.page-switcher button');
+    function showPage(name) {
+      Object.entries(pages).forEach(([key, el]) => el.classList.toggle('active', key === name));
+      switcher.forEach(btn => btn.classList.toggle('active', btn.dataset.target === name));
+      document.querySelector('.app').scrollTop = 0;
+    }
+    document.addEventListener('click', (event) => {
+      const targetBtn = event.target.closest('[data-target]');
+      if (targetBtn) showPage(targetBtn.dataset.target);
+    });
+
+    const title = document.getElementById('employeeTitle');
+    const noticeText = document.getElementById('noticeText');
+    const targetTitle = document.getElementById('targetTitle');
+    const targetRight = document.getElementById('targetRight');
+    const bizLine = document.getElementById('bizLine');
+    const topKpis = document.getElementById('topKpis');
+    const goalDuo = document.getElementById('goalDuo');
+    document.querySelectorAll('.tabs button').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tabs button').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const range = tab.dataset.range;
+        title.textContent = range === '今日' ? '员工看板' : '个人看板';
+        noticeText.textContent = range === '今年' ? '本人今年单笔最高成交金额' : '本人单笔最高成交金额';
+        if (range === '本月') {
+          bizLine.innerHTML = '<span>销售业绩</span><span>剩余天数： 10</span>';
+          topKpis.style.display = 'grid';
+          goalDuo.hidden = false;
+          targetTitle.textContent = '目标达成';
+          targetRight.textContent = '目标： 50元';
+        } else if (range === '今年') {
+          bizLine.innerHTML = '';
+          topKpis.innerHTML = '<div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">达标月数</div><div class="big">6</div><div><span>超过本柜组<span class="accent">50%</span>的销售</span></div></div>';
+          goalDuo.hidden = true;
+          targetTitle.textContent = '平均达标率(剩余:12,156元)';
+          targetRight.textContent = '目标： 50元';
+        } else {
+          bizLine.innerHTML = '<span></span><span></span>';
+          topKpis.innerHTML = '<div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">销售排名</div><div class="rank-line"><svg class="trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>超过本柜组<span class="accent">50%</span>的销售</span></div><strong>相较昨日上升1名</strong></div>';
+          topKpis.style.display = 'grid';
+          goalDuo.hidden = true;
+          targetTitle.textContent = '目标达成(剩余:12,156元)';
+          targetRight.textContent = range === '昨日' ? '目标： 50元' : '日目标： 50元';
+        }
+      });
+    });
+
+    document.querySelectorAll('.return-card .toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.return-card');
+        card.classList.toggle('open');
+        button.textContent = card.classList.contains('open') ? '⌄' : '⌃';
+      });
+    });
+
+    document.querySelectorAll('.chart-wrap').forEach((wrap) => {
+      const tip = wrap.querySelector('.tooltip');
+      wrap.addEventListener('pointermove', (event) => {
+        const rect = wrap.getBoundingClientRect();
+        tip.style.left = `${event.clientX - rect.left}px`;
+        tip.style.top = `${event.clientY - rect.top}px`;
+        tip.classList.add('visible');
+      });
+      wrap.addEventListener('pointerleave', () => tip.classList.remove('visible'));
+    });
+  </script>
+</body>
+</html>
