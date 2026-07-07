@@ -140,8 +140,10 @@
     .dropdown-menu { position: absolute; right: 0; top: 43px; z-index: 6; width: 140px; display: none; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 8px 18px rgba(0,0,0,.12); }
     .toolbar .dropdown-trigger { min-width: 132px; background: transparent; font-size: 17px; padding: 0; }
     .toolbar .dropdown-menu { left: 0; right: auto; top: 36px; }
-    .profile-switch { justify-self: end; }
+    .profile-switch { justify-self: end; position: relative; }
     .profile-switch .segmented button { min-width: 48px; }
+    .counter-pick { position: relative; }
+    .counter-pick .dropdown-menu { top: 34px; right: 0; width: 112px; }
     .dropdown.open .dropdown-menu { display: block; }
     .dropdown-menu button { display: block; width: 100%; padding: 10px 12px; text-align: left; font-size: 14px; }
     .dropdown-menu button.active { color: var(--blue); font-weight: 700; }
@@ -191,7 +193,7 @@
 
         <section class="page employee active" id="employeePage">
           <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="employeeTitle">员工看板</div><div></div></header>
-          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23f7f7f5'/%3E%3Cellipse cx='46' cy='54' rx='34' ry='28' fill='%23e7e8e4'/%3E%3Cpath d='M17 45C20 25 35 14 50 17c18 3 29 17 31 37 3 23-17 35-36 32-19-2-32-18-28-41Z' fill='%23d8d9d5'/%3E%3Cpath d='M23 45 14 24l23 11M67 36l21-12-8 25' fill='%23eef0ec' stroke='%239da1a1' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 23c18-12 41-12 59 7 3 6 4 13 4 22-20-23-45-26-68-10 0-8 1-14 5-19Z' fill='%2334383b' opacity='.9'/%3E%3Cpath d='M14 15c10 6 22 9 35 10M8 28c14 2 23 5 34 11M18 76c12-4 21-5 32-2M65 68c10-2 18-1 26 3' stroke='%239a9d9b' stroke-width='5' stroke-linecap='round' opacity='.45'/%3E%3Cpath d='M28 59c9 6 18 7 28 1M63 60c8 2 15 1 22-2' stroke='%23323638' stroke-width='2' stroke-linecap='round' opacity='.65'/%3E%3Cpath d='M51 63c3 0 5 2 5 4 0 3-4 5-7 4-3 0-5-3-4-5 1-2 3-3 6-3Z' fill='%23ec7d4e'/%3E%3Cpath d='M34 72c-11 0-20 5-28 11M39 75c-9 3-17 8-24 16M65 72c10 0 18 4 26 10M61 76c9 4 17 9 24 16' stroke='%23b9bcba' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M36 59c4 2 8 2 12-1M61 58c4 2 8 2 12-1' stroke='%232d3032' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M19 41c6 25 19 40 42 44-22 7-48-5-55-25-3-10 1-17 13-19Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E"></div><div><div class="name">小毛</div><div class="id">122353</div></div><div class="profile-switch"><div class="segmented"><button class="active" type="button" data-profile-scope="team">团队</button><button type="button" data-profile-scope="counter">主责柜组</button></div></div></div>
+          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23f7f7f5'/%3E%3Cellipse cx='46' cy='54' rx='34' ry='28' fill='%23e7e8e4'/%3E%3Cpath d='M17 45C20 25 35 14 50 17c18 3 29 17 31 37 3 23-17 35-36 32-19-2-32-18-28-41Z' fill='%23d8d9d5'/%3E%3Cpath d='M23 45 14 24l23 11M67 36l21-12-8 25' fill='%23eef0ec' stroke='%239da1a1' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 23c18-12 41-12 59 7 3 6 4 13 4 22-20-23-45-26-68-10 0-8 1-14 5-19Z' fill='%2334383b' opacity='.9'/%3E%3Cpath d='M14 15c10 6 22 9 35 10M8 28c14 2 23 5 34 11M18 76c12-4 21-5 32-2M65 68c10-2 18-1 26 3' stroke='%239a9d9b' stroke-width='5' stroke-linecap='round' opacity='.45'/%3E%3Cpath d='M28 59c9 6 18 7 28 1M63 60c8 2 15 1 22-2' stroke='%23323638' stroke-width='2' stroke-linecap='round' opacity='.65'/%3E%3Cpath d='M51 63c3 0 5 2 5 4 0 3-4 5-7 4-3 0-5-3-4-5 1-2 3-3 6-3Z' fill='%23ec7d4e'/%3E%3Cpath d='M34 72c-11 0-20 5-28 11M39 75c-9 3-17 8-24 16M65 72c10 0 18 4 26 10M61 76c9 4 17 9 24 16' stroke='%23b9bcba' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M36 59c4 2 8 2 12-1M61 58c4 2 8 2 12-1' stroke='%232d3032' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M19 41c6 25 19 40 42 44-22 7-48-5-55-25-3-10 1-17 13-19Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E"></div><div><div class="name">小毛</div><div class="id">122353</div></div><div class="profile-switch"><div class="segmented"><button class="active" type="button" data-profile-scope="team">团队</button><div class="counter-pick dropdown" id="counterPickDropdown"><button type="button" data-profile-scope="counter"><span id="counterPickLabel">主责柜组</span></button><div class="dropdown-menu"><button class="active" type="button" data-counter-pick="柜组1">柜组1</button><button type="button" data-counter-pick="柜组2">柜组2</button><button type="button" data-counter-pick="柜组3">柜组3</button></div></div></div></div></div>
           <div class="tabs"><button data-range="昨日">昨日</button><button class="active" data-range="今日">今日</button><button data-range="本月">本月</button><button data-range="今年">今年</button></div>
           <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
           <div class="employee-pad">
@@ -242,9 +244,18 @@
         setDutyFreeScope(dutyFreeBtn.dataset.dutyFree);
         return;
       }
+      const counterPickBtn = event.target.closest('[data-counter-pick]');
+      if (counterPickBtn) {
+        document.getElementById('counterPickLabel').textContent = counterPickBtn.dataset.counterPick;
+        document.querySelectorAll('[data-counter-pick]').forEach(btn => btn.classList.toggle('active', btn === counterPickBtn));
+        document.getElementById('counterPickDropdown').classList.remove('open');
+        setProfileScope('counter', counterPickBtn.dataset.counterPick);
+        return;
+      }
       const profileBtn = event.target.closest('[data-profile-scope]');
       if (profileBtn) {
         setProfileScope(profileBtn.dataset.profileScope);
+        if (profileBtn.dataset.profileScope === 'counter') document.getElementById('counterPickDropdown').classList.toggle('open');
         return;
       }
       const teamFilterBtn = event.target.closest('[data-team-filter]');
@@ -350,12 +361,12 @@
       teamSalesDropdown.querySelectorAll('[data-team-sales]').forEach(btn => btn.classList.toggle('active', btn.dataset.teamSales === type));
       teamSalesDropdown.classList.remove('open');
     }
-    function setProfileScope(scope) {
+    function setProfileScope(scope, counterName = document.getElementById('counterPickLabel')?.textContent || '柜组1') {
       const data = profileScopeData[scope];
       metricGrid.innerHTML = data.metrics;
       document.getElementById('amountValue').textContent = scope === 'team' ? '253' : '168';
       document.querySelector('#amountSummary .trend-pair').innerHTML = scope === 'team' ? '<span>环比 ↑ 50%</span><span>同比 ↑ 30%</span>' : '<span>环比 ↑ 45%</span><span>同比 ↑ 20%</span>';
-      document.querySelector('#scopeTargetRow span:first-child').textContent = scope === 'team' ? '目标达成(剩余:12,156元)' : '主责柜组目标达成(剩余:6,820元)';
+      document.querySelector('#scopeTargetRow span:first-child').textContent = scope === 'team' ? '目标达成(剩余:12,156元)' : `${counterName}目标达成(剩余:6,820元)`;
       const progress = document.querySelector('#scopeProgress span');
       progress.textContent = scope === 'team' ? '50%' : '45%';
       progress.style.width = scope === 'team' ? '50%' : '45%';
