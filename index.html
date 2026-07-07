@@ -143,11 +143,6 @@
     .page-switcher button { padding: 7px 10px; border-radius: 999px; font-size: 12px; color: #43505a; }
     .page-switcher button.active { background: #1e293b; color: #fff; }
 
-    .anno { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); z-index: 7; display: none; }
-    .anno::after { content: ""; position: absolute; left: 12px; top: 5px; width: 54px; height: 2px; background: var(--gold); }
-    .team .anno.a1 { display:block; right: 31px; top: 386px; }
-    .employee .anno.a2 { display:block; right: 27px; top: 296px; }
-
     @media (max-width: 520px) {
       body { padding: 0; background: #000; }
       .phone { width: 100vw; height: 100vh; border-radius: 0; padding: 0; box-shadow: none; }
@@ -173,8 +168,7 @@
           <div class="card grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">成交单数</div></div><div><div class="num">100</div><div class="label">购物人数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">票单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div></div>
           <div class="card chart-card"><h2 class="section-title">销售趋势</h2><div class="chart-wrap" data-chart="line"><svg viewBox="0 0 340 240" width="100%" height="100%" aria-label="销售趋势折线图"><g stroke="#e6e6e6" stroke-width="1"><line x1="54" y1="28" x2="314" y2="28"/><line x1="54" y1="70" x2="314" y2="70"/><line x1="54" y1="112" x2="314" y2="112"/><line x1="54" y1="154" x2="314" y2="154"/><line x1="54" y1="196" x2="314" y2="196"/></g><g fill="#40515d" font-size="13"><text x="28" y="32">250</text><text x="28" y="74">200</text><text x="28" y="116">150</text><text x="28" y="158">100</text><text x="36" y="200">50</text></g><path d="M80 154 L132 120 L184 36 L236 154 L288 129 L288 196 L80 196 Z" fill="#2f7df0" opacity=".18"/><path d="M80 154 L132 120 L184 36 L236 154 L288 129" fill="none" stroke="#4e86e9" stroke-width="2.3" stroke-linejoin="round"/><g fill="#fff" stroke="#4e86e9" stroke-width="2.3"><circle cx="80" cy="154" r="3.3"/><circle cx="132" cy="120" r="3.3"/><circle cx="184" cy="36" r="3.3"/><circle cx="236" cy="154" r="3.3"/><circle cx="288" cy="129" r="3.3"/></g><line x1="54" y1="196" x2="314" y2="196" stroke="#65717b"/><g fill="#40515d" font-size="13"><text x="76" y="216">9</text><text x="128" y="216">10</text><text x="180" y="216">11</text><text x="232" y="216">12</text><text x="284" y="216">13</text></g></svg><div class="tooltip">11日：230</div></div></div>
           <div class="card sales-card"><div class="sales-head"><h2 class="section-title">销售情况</h2><button class="select">按团队<span class="chev"></span></button></div><div class="table-scroller"><table><thead><tr><th>团队名称</th><th>销售收入</th><th>客单价</th><th>销售排名</th><th>成交单数</th></tr></thead><tbody><tr><td>[68681208]IWC团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr></tbody></table></div></div>
-          <i class="anno a1"></i>
-        </section>
+                  </section>
 
         <section class="page employee" id="employeePage">
           <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="employeeTitle">员工看板</div><div></div></header>
@@ -189,8 +183,7 @@
             <div class="goal-duo" id="goalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
             <div class="employee-grid grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
-          </div><i class="anno a2"></i>
-        </section>
+          </div>        </section>
 
         <section class="page" id="returnPage">
           <header class="topbar"><button class="back" data-target="employee" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="returnTitle">退货明细</div><div></div></header>
@@ -245,7 +238,7 @@
         document.querySelectorAll('.tabs button').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         const range = tab.dataset.range;
-        title.textContent = range === '今日' ? '员工看板' : '个人看板';
+        title.textContent = range === '今日' ? '员工看板' : '店长看板';
         noticeText.textContent = range === '今年' ? '本人今年单笔最高成交金额' : '本人单笔最高成交金额';
         if (range === '本月') {
           bizLine.innerHTML = '<span>销售业绩</span><span>剩余天数： 10</span>';
