@@ -117,11 +117,8 @@
     .employee-pad { padding: 0 14px 18px; }
     .notice.employee { padding-left: 8px; padding-right: 8px; }
     .inline-row { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 12px; font-size: 15px; font-weight: 600; }
-    .employee-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 16px; }
+    .employee-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
     .scope-toggle { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #596671; }
-    .scope-info { position: relative; width: 18px; height: 18px; border-radius: 50%; background: var(--soft); color: #596671; font-size: 12px; font-weight: 700; display: inline-grid; place-items: center; }
-    .scope-info::after { content: attr(data-tip); position: absolute; right: 0; top: 24px; z-index: 8; width: 210px; display: none; padding: 8px 10px; background: rgba(21,32,43,.94); color: #fff; border-radius: 6px; font-size: 12px; line-height: 1.5; font-weight: 400; text-align: left; }
-    .scope-info:hover::after, .scope-info:focus::after { display: block; }
     .segmented { display: inline-grid; grid-template-columns: 1fr 1fr; padding: 2px; background: var(--soft); border-radius: 8px; }
     .segmented button { min-width: 76px; height: 28px; border-radius: 6px; font-size: 12px; color: #596671; }
     .segmented button.active { background: #fff; color: var(--blue); font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
@@ -134,8 +131,6 @@
     .goal-duo .soft-tile { border-radius: 8px; }
     .bar-card { padding: 18px 6px 8px; background: transparent; margin: 0; }
     .bar-card .chart-wrap { height: 278px; }
-    .sales-tip { margin: 10px 0 24px; }
-    .tip-box { background: var(--soft); border-radius: 8px; padding: 12px 14px; font-size: 14px; line-height: 1.7; }
     .distribution { margin-top: 6px; }
     .distribution-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .dropdown { position: relative; }
@@ -195,14 +190,12 @@
           <div class="tabs"><button data-range="昨日">昨日</button><button class="active" data-range="今日">今日</button><button data-range="本月">本月</button><button data-range="今年">今年</button></div>
           <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
           <div class="employee-pad">
-            <div class="notice employee"><svg class="megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 11h4l9-5v12l-9-5H3z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span id="noticeText">本人单笔最高成交金额</span><span class="price">235,125</span><span>元</span></div>
-            <div class="inline-row" id="bizLine"><span id="bizLabel">销售业绩</span><div class="scope-toggle"><span class="scope-info" tabindex="0" data-tip="免值品以商品大类26识别；切换后影响销售收入、连带率、件单价等统计口径。">?</span><div class="segmented"><button class="active" type="button" data-duty-free="include">含免值品</button><button type="button" data-duty-free="exclude">不含免值品</button></div></div></div>
-            <div class="employee-kpis" id="topKpis"><div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">销售排名</div><div class="rank-line"><svg class="trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>超过本柜组<span class="accent">50%</span>的销售</span></div><strong>相较昨日上升1名</strong></div></div>
+            <div class="inline-row" id="bizLine"><span id="bizLabel">销售业绩</span><div class="scope-toggle"><div class="segmented"><button class="active" type="button" data-duty-free="include">含免值品</button><button type="button" data-duty-free="exclude">不含免值品</button></div></div></div>
+            <div class="employee-kpis" id="topKpis"><div class="soft-tile"><div class="card-title">团队成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">目标达成 50%</div></div><div class="soft-tile"><div class="card-title">主责柜组成交金额</div><div class="big">168 <small>元</small></div><div class="trend-up">目标达成 45%</div></div><div class="soft-tile"><div class="card-title">团队目标达成</div><div class="big">50%</div><div>全部柜组汇总</div></div><div class="soft-tile"><div class="card-title">主责柜组目标达成</div><div class="big">45%</div><div>按人员均摊目标</div></div></div>
             <div class="target-row" style="padding:0 0 2px"><span id="targetTitle">目标达成(剩余:12,156元)</span><span id="targetRight">日目标： 50元</span></div><div class="progress" style="margin:10px 0 18px"><span>50%</span></div>
             <div class="goal-duo" id="goalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
             <div class="employee-grid grid6" id="metricGrid"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
-            <section class="sales-tip"><h2 class="section-title">销售小提示：</h2></section>
             <section class="distribution"><div class="distribution-head"><h2 class="section-title">销售分布</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></section>
           </div>
         </section>
@@ -291,7 +284,6 @@
     }
 
     const title = document.getElementById('employeeTitle');
-    const noticeText = document.getElementById('noticeText');
     const targetTitle = document.getElementById('targetTitle');
     const targetRight = document.getElementById('targetRight');
     const bizLine = document.getElementById('bizLine');
@@ -300,8 +292,7 @@
     const goalDuo = document.getElementById('goalDuo');
     const metricGrid = document.getElementById('metricGrid');
     const employeeMetricHtml = metricGrid.innerHTML;
-    const employeeKpiHtml = topKpis.innerHTML;
-    const managerKpiHtml = '<div class="soft-tile"><div class="card-title">团队成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">目标达成 50%</div></div><div class="soft-tile"><div class="card-title">主责柜组成交金额</div><div class="big">168 <small>元</small></div><div class="trend-up">目标达成 45%</div></div><div class="soft-tile"><div class="card-title">团队目标达成</div><div class="big">50%</div><div>全部柜组汇总</div></div><div class="soft-tile"><div class="card-title">主责柜组目标达成</div><div class="big">45%</div><div>按人员均摊目标</div></div>';
+    const managerKpiHtml = topKpis.innerHTML;
     const managerMetricHtml = '<div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button>';
     function setDutyFreeScope(scope) {
       document.querySelectorAll('[data-duty-free]').forEach(btn => btn.classList.toggle('active', btn.dataset.dutyFree === scope));
@@ -312,7 +303,6 @@
         tab.classList.add('active');
         const range = tab.dataset.range;
         title.textContent = range === '今日' ? '员工看板' : '店长看板';
-        noticeText.textContent = range === '今年' ? '本人今年单笔最高成交金额' : '本人单笔最高成交金额';
         if (range === '本月') {
           bizLabel.textContent = '销售业绩';
           topKpis.innerHTML = managerKpiHtml;
@@ -331,7 +321,7 @@
           targetRight.textContent = '目标： 50元';
         } else {
           bizLabel.textContent = '销售业绩';
-          topKpis.innerHTML = employeeKpiHtml;
+          topKpis.innerHTML = managerKpiHtml;
           topKpis.style.display = 'grid';
           goalDuo.hidden = true;
           metricGrid.innerHTML = employeeMetricHtml;
