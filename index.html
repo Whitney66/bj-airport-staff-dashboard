@@ -137,14 +137,15 @@
     .distribution-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .dropdown { position: relative; }
     .dropdown-trigger { min-width: 114px; height: 39px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 12px; background: #fff; color: #3f4d58; }
-    .dropdown-menu { position: absolute; right: 0; top: 43px; z-index: 6; width: 140px; display: none; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+    .dropdown-menu { position: absolute; right: 0; top: 43px; z-index: 6; width: 140px; display: block; max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-4px); transition: max-height .18s ease, opacity .18s ease, transform .18s ease; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 8px 18px rgba(0,0,0,.12); }
     .toolbar .dropdown-trigger { min-width: 132px; background: transparent; font-size: 17px; padding: 0; }
     .toolbar .dropdown-menu { left: 0; right: auto; top: 36px; }
     .profile-switch { justify-self: end; position: relative; }
     .profile-switch .segmented button { min-width: 48px; }
     .counter-pick { position: relative; }
-    .counter-pick .dropdown-menu { top: 34px; right: 0; width: 112px; }
-    .dropdown.open .dropdown-menu { display: block; }
+    .counter-pick > button { width: 76px; }
+    .counter-pick .dropdown-menu { top: 34px; right: 0; width: 76px; min-width: 76px; max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-4px); transition: max-height .18s ease, opacity .18s ease, transform .18s ease; }
+    .dropdown.open .dropdown-menu { display: block; max-height: 180px; opacity: 1; transform: translateY(0); }
     .dropdown-menu button { display: block; width: 100%; padding: 10px 12px; text-align: left; font-size: 14px; }
     .dropdown-menu button.active { color: var(--blue); font-weight: 700; }
     .distribution table { min-width: 100%; width: 100%; font-size: 14px; }
@@ -411,7 +412,7 @@
         const range = tab.dataset.range;
         title.textContent = range === '今日' ? '员工看板' : '店长看板';
         bizLabel.textContent = '销售业绩';
-        monthGoalDuo.hidden = range !== '本月';
+        monthGoalDuo.hidden = !(range === '今日' || range === '本月');
       });
     });
 
