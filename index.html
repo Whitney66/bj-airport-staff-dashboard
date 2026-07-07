@@ -118,6 +118,10 @@
     .notice.employee { padding-left: 8px; padding-right: 8px; }
     .inline-row { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 12px; font-size: 15px; font-weight: 600; }
     .employee-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 16px; }
+    .scope-toggle { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 8px 0 14px; font-size: 13px; color: #596671; }
+    .segmented { display: inline-grid; grid-template-columns: 1fr 1fr; padding: 2px; background: var(--soft); border-radius: 8px; }
+    .segmented button { min-width: 76px; height: 28px; border-radius: 6px; font-size: 12px; color: #596671; }
+    .segmented button.active { background: #fff; color: var(--blue); font-weight: 700; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
     .soft-tile { background: var(--soft); border-radius: 8px; min-height: 86px; text-align: center; padding: 12px 8px; }
     .rank-line { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 11px 0 8px; font-size: 12px; }
     .trophy { width: 22px; height: 22px; }
@@ -189,14 +193,15 @@
           <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
           <div class="employee-pad">
             <div class="notice employee"><svg class="megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 11h4l9-5v12l-9-5H3z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span id="noticeText">本人单笔最高成交金额</span><span class="price">235,125</span><span>元</span></div>
+            <div class="scope-toggle"><span>计算口径</span><div class="segmented"><button class="active" type="button" data-duty-free="include">含免值品</button><button type="button" data-duty-free="exclude">不含免值品</button></div></div>
             <div class="inline-row" id="bizLine"><span>销售业绩</span><span></span></div>
             <div class="employee-kpis" id="topKpis"><div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">销售排名</div><div class="rank-line"><svg class="trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>超过本柜组<span class="accent">50%</span>的销售</span></div><strong>相较昨日上升1名</strong></div></div>
             <div class="target-row" style="padding:0 0 2px"><span id="targetTitle">目标达成(剩余:12,156元)</span><span id="targetRight">日目标： 50元</span></div><div class="progress" style="margin:10px 0 18px"><span>50%</span></div>
             <div class="goal-duo" id="goalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
-            <div class="employee-grid grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
+            <div class="employee-grid grid6" id="metricGrid"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
-            <section class="sales-tip"><h2 class="section-title">销售小提示：</h2><div class="tip-box"><p>同柜组内，销售数量最好的单品为[C65665]雅诗兰黛小棕瓶，本人卖了<span class="accent">xxx</span>件</p><p>同柜组内，最受顾客喜爱的单品为[C65665]雅诗兰黛小棕瓶</p></div></section>
-            <section class="distribution"><div class="distribution-head"><h2 class="section-title">销售分布</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>客单价</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>12,256</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>12,256</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>12,256</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>12,256</td></tr></tbody></table></section>
+            <section class="sales-tip"><h2 class="section-title">销售小提示：</h2><div class="tip-box"><p>同柜组内，销售数量最好的商品大类为[C65665]雅诗兰黛小棕瓶，本人卖了<span class="accent">xxx</span>件</p><p>排名按员工涉及柜组内所有人员统一比较，销售额按门店实际员工数据抓取</p><p>权限按团队/柜组分配，可查看所属团队下全部柜组数据</p></div></section>
+            <section class="distribution"><div class="distribution-head"><h2 class="section-title">销售分布</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></section>
           </div>
         </section>
 
@@ -232,6 +237,11 @@
       showPage('returns');
     }
     document.addEventListener('click', (event) => {
+      const dutyFreeBtn = event.target.closest('[data-duty-free]');
+      if (dutyFreeBtn) {
+        setDutyFreeScope(dutyFreeBtn.dataset.dutyFree);
+        return;
+      }
       const distributionBtn = event.target.closest('[data-distribution]');
       if (distributionBtn) {
         renderDistribution(distributionBtn.dataset.distribution);
@@ -255,12 +265,14 @@
       counter: {
         label: '按柜组',
         firstColumn: '柜组名称',
-        rows: [['[68681208]IWC团队', '255,265', '12,256'], ['[68680403]科颜氏', '255,265', '12,256'], ['[68680406]YSL团队', '255,265', '12,256'], ['[68680407]赫莲娜团队', '255,265', '12,256']]
+        columns: ['销售收入', '进店人数', '转化率'],
+        rows: [['[68681208]IWC团队', '255,265', '860', '11.6%'], ['[68680403]科颜氏', '255,265', '720', '13.9%'], ['[68680406]YSL团队', '255,265', '650', '15.4%'], ['[68680407]赫莲娜团队', '255,265', '580', '17.2%']]
       },
       category: {
         label: '按商品大类',
         firstColumn: '商品大类',
-        rows: [['香化护肤', '255,265', '12,256'], ['精品腕表', '185,632', '18,563'], ['彩妆香水', '126,890', '8,459'], ['箱包配饰', '98,320', '7,025']]
+        columns: ['销售收入', '连带率', '件单价'],
+        rows: [['香化护肤', '255,265', '2.5', '253'], ['精品腕表', '185,632', '1.6', '1,856'], ['彩妆香水', '126,890', '2.1', '189'], ['免值品(26)', '98,320', '1.3', '702']]
       }
     };
     const distributionDropdown = document.getElementById('distributionDropdown');
@@ -270,8 +282,8 @@
     function renderDistribution(type) {
       const data = distributionData[type];
       distributionLabel.textContent = data.label;
-      distributionHead.innerHTML = `<tr><th>${data.firstColumn}</th><th>销售收入</th><th>客单价</th></tr>`;
-      distributionBody.innerHTML = data.rows.map(row => `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td></tr>`).join('');
+      distributionHead.innerHTML = `<tr><th>${data.firstColumn}</th>${data.columns.map(column => `<th>${column}</th>`).join('')}</tr>`;
+      distributionBody.innerHTML = data.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('');
       distributionDropdown.querySelectorAll('[data-distribution]').forEach(btn => btn.classList.toggle('active', btn.dataset.distribution === type));
       distributionDropdown.classList.remove('open');
     }
@@ -283,6 +295,16 @@
     const bizLine = document.getElementById('bizLine');
     const topKpis = document.getElementById('topKpis');
     const goalDuo = document.getElementById('goalDuo');
+    const metricGrid = document.getElementById('metricGrid');
+    const employeeMetricHtml = metricGrid.innerHTML;
+    const employeeKpiHtml = topKpis.innerHTML;
+    const managerKpiHtml = '<div class="soft-tile"><div class="card-title">团队成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">目标达成 50%</div></div><div class="soft-tile"><div class="card-title">主责柜组成交金额</div><div class="big">168 <small>元</small></div><div class="trend-up">目标达成 45%</div></div><div class="soft-tile"><div class="card-title">团队目标达成</div><div class="big">50%</div><div>全部柜组汇总</div></div><div class="soft-tile"><div class="card-title">主责柜组目标达成</div><div class="big">45%</div><div>按人员均摊目标</div></div>';
+    const managerMetricHtml = '<div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button>';
+    function setDutyFreeScope(scope) {
+      document.querySelectorAll('[data-duty-free]').forEach(btn => btn.classList.toggle('active', btn.dataset.dutyFree === scope));
+      const suffix = scope === 'exclude' ? '不含免值品，商品大类26已剔除' : '含免值品，商品大类26计入口径';
+      document.querySelector('.scope-toggle span').textContent = `计算口径：${suffix}`;
+    }
     document.querySelectorAll('.tabs button').forEach((tab) => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tabs button').forEach(t => t.classList.remove('active'));
@@ -292,21 +314,26 @@
         noticeText.textContent = range === '今年' ? '本人今年单笔最高成交金额' : '本人单笔最高成交金额';
         if (range === '本月') {
           bizLine.innerHTML = '<span>销售业绩</span><span>剩余天数： 10</span>';
+          topKpis.innerHTML = managerKpiHtml;
           topKpis.style.display = 'grid';
           goalDuo.hidden = false;
-          targetTitle.textContent = '目标达成';
+          metricGrid.innerHTML = managerMetricHtml;
+          targetTitle.textContent = '团队目标达成 / 主责柜组目标达成';
           targetRight.textContent = '目标： 50元';
         } else if (range === '今年') {
-          bizLine.innerHTML = '';
-          topKpis.innerHTML = '<div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">达标月数</div><div class="big">6</div><div><span>超过本柜组<span class="accent">50%</span>的销售</span></div></div>';
+          bizLine.innerHTML = '<span>销售业绩</span><span>年度团队口径</span>';
+          topKpis.innerHTML = managerKpiHtml;
+          topKpis.style.display = 'grid';
           goalDuo.hidden = true;
-          targetTitle.textContent = '平均达标率(剩余:12,156元)';
+          metricGrid.innerHTML = managerMetricHtml;
+          targetTitle.textContent = '平均达标率(按团队&主责柜组)';
           targetRight.textContent = '目标： 50元';
         } else {
           bizLine.innerHTML = '<span></span><span></span>';
-          topKpis.innerHTML = '<div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">销售排名</div><div class="rank-line"><svg class="trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>超过本柜组<span class="accent">50%</span>的销售</span></div><strong>相较昨日上升1名</strong></div>';
+          topKpis.innerHTML = employeeKpiHtml;
           topKpis.style.display = 'grid';
           goalDuo.hidden = true;
+          metricGrid.innerHTML = employeeMetricHtml;
           targetTitle.textContent = '目标达成(剩余:12,156元)';
           targetRight.textContent = range === '昨日' ? '目标： 50元' : '日目标： 50元';
         }
