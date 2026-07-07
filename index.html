@@ -142,6 +142,10 @@
     .dropdown { position: relative; }
     .dropdown-trigger { min-width: 114px; height: 39px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 12px; background: #fff; color: #3f4d58; }
     .dropdown-menu { position: absolute; right: 0; top: 43px; z-index: 6; width: 140px; display: none; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+    .toolbar .dropdown-trigger { min-width: 132px; background: transparent; font-size: 17px; padding: 0; }
+    .toolbar .dropdown-menu { left: 0; right: auto; top: 36px; }
+    .profile-switch { justify-self: end; }
+    .profile-switch .segmented button { min-width: 48px; }
     .dropdown.open .dropdown-menu { display: block; }
     .dropdown-menu button { display: block; width: 100%; padding: 10px 12px; text-align: left; font-size: 14px; }
     .dropdown-menu button.active { color: var(--blue); font-weight: 700; }
@@ -177,9 +181,9 @@
     <div class="screen">
       <div class="statusbar"><span>12:00</span><div class="icons"><div class="signal"><span></span><span></span><span></span><span></span></div><div class="wifi"></div><div class="battery"></div></div></div>
       <main class="app">
-        <section class="page team active" id="teamPage">
+        <section class="page team" id="teamPage">
           <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title">团队看板</div><div></div></header>
-          <div class="toolbar"><button class="select">全部柜组<span class="chev"></span></button><button class="select">今日<span class="chev"></span></button></div>
+          <div class="toolbar"><div class="dropdown" id="teamGroupDropdown"><button class="dropdown-trigger" type="button"><span id="teamGroupLabel">全部柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-team-filter="全部柜组">全部柜组</button><button type="button" data-team-filter="IWC柜组">IWC柜组</button><button type="button" data-team-filter="YSL柜组">YSL柜组</button><button type="button" data-team-filter="主责柜组">主责柜组</button></div></div><div class="dropdown" id="teamTimeDropdown"><button class="dropdown-trigger" type="button"><span id="teamTimeLabel">今日</span><span class="chev"></span></button><div class="dropdown-menu"><button type="button" data-team-time="昨日">昨日</button><button class="active" type="button" data-team-time="今日">今日</button><button type="button" data-team-time="本月">本月</button><button type="button" data-team-time="今年">今年</button></div></div></div>
           <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
           <div class="notice"><svg class="megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 11h4l9-5v12l-9-5H3z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span>统计柜组单笔最高成交金额</span><span class="price">235,125</span><span>元</span></div>
           <div class="card hero-kpi"><div class="card-title">销售收入</div><div class="big">253</div><div class="trend-up">环比  ↑ 50%</div></div>
@@ -187,12 +191,12 @@
           <div class="card twins"><div class="metric-link"><div class="num">253</div><button type="button">退货金额  ›</button></div><div class="divider"></div><div class="metric-link"><div class="num">253</div><button type="button">退货件数  ›</button></div></div>
           <div class="card grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">成交单数</div></div><div><div class="num">100</div><div class="label">购物人数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">票单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div></div>
           <div class="card chart-card"><h2 class="section-title">销售趋势</h2><div class="chart-wrap" data-chart="line"><svg viewBox="0 0 340 240" width="100%" height="100%" aria-label="销售趋势折线图"><g stroke="#e6e6e6" stroke-width="1"><line x1="54" y1="28" x2="314" y2="28"/><line x1="54" y1="70" x2="314" y2="70"/><line x1="54" y1="112" x2="314" y2="112"/><line x1="54" y1="154" x2="314" y2="154"/><line x1="54" y1="196" x2="314" y2="196"/></g><g fill="#40515d" font-size="13"><text x="28" y="32">250</text><text x="28" y="74">200</text><text x="28" y="116">150</text><text x="28" y="158">100</text><text x="36" y="200">50</text></g><path d="M80 154 L132 120 L184 36 L236 154 L288 129 L288 196 L80 196 Z" fill="#2f7df0" opacity=".18"/><path d="M80 154 L132 120 L184 36 L236 154 L288 129" fill="none" stroke="#4e86e9" stroke-width="2.3" stroke-linejoin="round"/><g fill="#fff" stroke="#4e86e9" stroke-width="2.3"><circle cx="80" cy="154" r="3.3"/><circle cx="132" cy="120" r="3.3"/><circle cx="184" cy="36" r="3.3"/><circle cx="236" cy="154" r="3.3"/><circle cx="288" cy="129" r="3.3"/></g><line x1="54" y1="196" x2="314" y2="196" stroke="#65717b"/><g fill="#40515d" font-size="13"><text x="76" y="216">9</text><text x="128" y="216">10</text><text x="180" y="216">11</text><text x="232" y="216">12</text><text x="284" y="216">13</text></g></svg><div class="tooltip">11日：230</div></div></div>
-          <div class="card sales-card"><div class="sales-head"><h2 class="section-title">销售情况</h2><button class="select">按团队<span class="chev"></span></button></div><div class="table-scroller"><table><thead><tr><th>团队名称</th><th>销售收入</th><th>客单价</th><th>销售排名</th><th>成交单数</th></tr></thead><tbody><tr><td>[68681208]IWC团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr></tbody></table></div></div>
+          <div class="card sales-card"><div class="sales-head"><h2 class="section-title">销售情况</h2><div class="dropdown" id="teamSalesDropdown"><button class="dropdown-trigger" type="button"><span id="teamSalesLabel">按团队</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-team-sales="team">按团队</button><button type="button" data-team-sales="staff">按人员</button><button type="button" data-team-sales="category">按商品大类</button></div></div></div><div class="table-scroller"><table><thead id="teamSalesHead"><tr><th>团队名称</th><th>销售收入</th><th>客单价</th><th>销售排名</th><th>成交单数</th></tr></thead><tbody id="teamSalesBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr></tbody></table></div></div>
                   </section>
 
-        <section class="page employee" id="employeePage">
+        <section class="page employee active" id="employeePage">
           <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="employeeTitle">员工看板</div><div></div></header>
-          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23f7f7f5'/%3E%3Cellipse cx='46' cy='54' rx='34' ry='28' fill='%23e7e8e4'/%3E%3Cpath d='M17 45C20 25 35 14 50 17c18 3 29 17 31 37 3 23-17 35-36 32-19-2-32-18-28-41Z' fill='%23d8d9d5'/%3E%3Cpath d='M23 45 14 24l23 11M67 36l21-12-8 25' fill='%23eef0ec' stroke='%239da1a1' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 23c18-12 41-12 59 7 3 6 4 13 4 22-20-23-45-26-68-10 0-8 1-14 5-19Z' fill='%2334383b' opacity='.9'/%3E%3Cpath d='M14 15c10 6 22 9 35 10M8 28c14 2 23 5 34 11M18 76c12-4 21-5 32-2M65 68c10-2 18-1 26 3' stroke='%239a9d9b' stroke-width='5' stroke-linecap='round' opacity='.45'/%3E%3Cpath d='M28 59c9 6 18 7 28 1M63 60c8 2 15 1 22-2' stroke='%23323638' stroke-width='2' stroke-linecap='round' opacity='.65'/%3E%3Cpath d='M51 63c3 0 5 2 5 4 0 3-4 5-7 4-3 0-5-3-4-5 1-2 3-3 6-3Z' fill='%23ec7d4e'/%3E%3Cpath d='M34 72c-11 0-20 5-28 11M39 75c-9 3-17 8-24 16M65 72c10 0 18 4 26 10M61 76c9 4 17 9 24 16' stroke='%23b9bcba' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M36 59c4 2 8 2 12-1M61 58c4 2 8 2 12-1' stroke='%232d3032' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M19 41c6 25 19 40 42 44-22 7-48-5-55-25-3-10 1-17 13-19Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E"></div><div><div class="name">小毛</div><div class="id">122353</div></div><div class="watch"><div class="times"><span class="badge">3</span>4次</div><div class="id">本月被观察次数</div></div></div>
+          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23f7f7f5'/%3E%3Cellipse cx='46' cy='54' rx='34' ry='28' fill='%23e7e8e4'/%3E%3Cpath d='M17 45C20 25 35 14 50 17c18 3 29 17 31 37 3 23-17 35-36 32-19-2-32-18-28-41Z' fill='%23d8d9d5'/%3E%3Cpath d='M23 45 14 24l23 11M67 36l21-12-8 25' fill='%23eef0ec' stroke='%239da1a1' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 23c18-12 41-12 59 7 3 6 4 13 4 22-20-23-45-26-68-10 0-8 1-14 5-19Z' fill='%2334383b' opacity='.9'/%3E%3Cpath d='M14 15c10 6 22 9 35 10M8 28c14 2 23 5 34 11M18 76c12-4 21-5 32-2M65 68c10-2 18-1 26 3' stroke='%239a9d9b' stroke-width='5' stroke-linecap='round' opacity='.45'/%3E%3Cpath d='M28 59c9 6 18 7 28 1M63 60c8 2 15 1 22-2' stroke='%23323638' stroke-width='2' stroke-linecap='round' opacity='.65'/%3E%3Cpath d='M51 63c3 0 5 2 5 4 0 3-4 5-7 4-3 0-5-3-4-5 1-2 3-3 6-3Z' fill='%23ec7d4e'/%3E%3Cpath d='M34 72c-11 0-20 5-28 11M39 75c-9 3-17 8-24 16M65 72c10 0 18 4 26 10M61 76c9 4 17 9 24 16' stroke='%23b9bcba' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M36 59c4 2 8 2 12-1M61 58c4 2 8 2 12-1' stroke='%232d3032' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M19 41c6 25 19 40 42 44-22 7-48-5-55-25-3-10 1-17 13-19Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E"></div><div><div class="name">小毛</div><div class="id">122353</div></div><div class="profile-switch"><div class="segmented"><button class="active" type="button" data-profile-scope="team">团队</button><button type="button" data-profile-scope="counter">主责柜组</button></div></div></div>
           <div class="tabs"><button data-range="昨日">昨日</button><button class="active" data-range="今日">今日</button><button data-range="本月">本月</button><button data-range="今年">今年</button></div>
           <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
           <div class="employee-pad">
@@ -201,8 +205,8 @@
             <div class="dual-progress" id="goalProgress"><div class="progress-block"><div class="progress-meta"><strong>团队目标达成</strong><span>目标：50元</span></div><div class="progress compact"><span style="width:50%">50%</span></div></div><div class="progress-block"><div class="progress-meta"><strong>主责柜组目标达成</strong><span>目标：50元</span></div><div class="progress compact"><span style="width:45%">45%</span></div></div></div>
             <div class="goal-duo" id="goalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
             <div class="employee-grid grid6" id="metricGrid"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
-            <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
-            <section class="distribution"><div class="distribution-head"><h2 class="section-title">销售分布</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></section>
+            <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" id="scopeChart" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
+            <section class="distribution"><div class="distribution-head"><h2 class="section-title" id="distributionTitle">销售情况</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></section>
           </div>
         </section>
 
@@ -217,7 +221,7 @@
       </main>
     </div>
   </div>
-  <nav class="page-switcher" aria-label="页面切换"><button class="active" data-target="team">团队</button><button data-target="employee">主责柜组</button></nav>
+  <nav class="page-switcher" aria-label="页面切换"><button class="active" data-page-scope="team">团队</button><button data-page-scope="counter">主责柜组</button></nav>
 
   <script>
     const pages = { team: document.getElementById('teamPage'), employee: document.getElementById('employeePage'), returns: document.getElementById('returnPage') };
@@ -225,7 +229,9 @@
     const returnTitle = document.getElementById('returnTitle');
     function showPage(name) {
       Object.entries(pages).forEach(([key, el]) => el.classList.toggle('active', key === name));
-      switcher.forEach(btn => btn.classList.toggle('active', btn.dataset.target === (name === 'returns' ? 'employee' : name)));
+      switcher.forEach(btn => {
+        if (btn.dataset.target) btn.classList.toggle('active', btn.dataset.target === (name === 'returns' ? 'employee' : name));
+      });
       document.querySelector('.app').scrollTop = 0;
     }
     function showReturnDetail(view) {
@@ -238,9 +244,41 @@
       showPage('returns');
     }
     document.addEventListener('click', (event) => {
+      const pageScopeBtn = event.target.closest('[data-page-scope]');
+      if (pageScopeBtn) {
+        const scope = pageScopeBtn.dataset.pageScope;
+        showPage('employee');
+        setProfileScope(scope === 'team' ? 'team' : 'counter');
+        switcher.forEach(btn => btn.classList.toggle('active', btn === pageScopeBtn));
+        return;
+      }
       const dutyFreeBtn = event.target.closest('[data-duty-free]');
       if (dutyFreeBtn) {
         setDutyFreeScope(dutyFreeBtn.dataset.dutyFree);
+        return;
+      }
+      const profileBtn = event.target.closest('[data-profile-scope]');
+      if (profileBtn) {
+        setProfileScope(profileBtn.dataset.profileScope);
+        return;
+      }
+      const teamFilterBtn = event.target.closest('[data-team-filter]');
+      if (teamFilterBtn) {
+        teamGroupLabel.textContent = teamFilterBtn.dataset.teamFilter;
+        teamGroupDropdown.querySelectorAll('[data-team-filter]').forEach(btn => btn.classList.toggle('active', btn === teamFilterBtn));
+        teamGroupDropdown.classList.remove('open');
+        return;
+      }
+      const teamTimeBtn = event.target.closest('[data-team-time]');
+      if (teamTimeBtn) {
+        teamTimeLabel.textContent = teamTimeBtn.dataset.teamTime;
+        teamTimeDropdown.querySelectorAll('[data-team-time]').forEach(btn => btn.classList.toggle('active', btn === teamTimeBtn));
+        teamTimeDropdown.classList.remove('open');
+        return;
+      }
+      const teamSalesBtn = event.target.closest('[data-team-sales]');
+      if (teamSalesBtn) {
+        renderTeamSales(teamSalesBtn.dataset.teamSales);
         return;
       }
       const distributionBtn = event.target.closest('[data-distribution]');
@@ -248,11 +286,14 @@
         renderDistribution(distributionBtn.dataset.distribution);
         return;
       }
-      if (event.target.closest('.dropdown-trigger')) {
-        distributionDropdown.classList.toggle('open');
+      const dropdownTrigger = event.target.closest('.dropdown-trigger');
+      if (dropdownTrigger) {
+        const dropdown = dropdownTrigger.closest('.dropdown');
+        document.querySelectorAll('.dropdown.open').forEach(item => { if (item !== dropdown) item.classList.remove('open'); });
+        dropdown.classList.toggle('open');
         return;
       }
-      if (!event.target.closest('#distributionDropdown')) distributionDropdown.classList.remove('open');
+      document.querySelectorAll('.dropdown.open').forEach(item => item.classList.remove('open'));
       const returnBtn = event.target.closest('[data-return-view]');
       if (returnBtn) {
         showReturnDetail(returnBtn.dataset.returnView);
@@ -261,6 +302,22 @@
       const targetBtn = event.target.closest('[data-target]');
       if (targetBtn) showPage(targetBtn.dataset.target);
     });
+
+    const teamSalesData = {
+      team: { label: '按团队', columns: ['团队名称', '销售收入', '客单价', '销售排名', '成交单数'], rows: [['[68681208]IWC团队', '255,265', '12,256', '5', '23'], ['[68680403]科颜氏', '255,265', '12,256', '5', '23'], ['[68680406]YSL团队', '255,265', '12,256', '5', '23'], ['[68680407]赫莲娜团队', '255,265', '12,256', '5', '23']] },
+      staff: { label: '按人员', columns: ['员工姓名', '销售收入', '客单价', '销售排名', '成交单数'], rows: [['小毛', '88,265', '8,826', '1', '10'], ['李敏', '76,520', '7,652', '2', '10'], ['王雪', '68,300', '6,830', '3', '10'], ['张宁', '52,180', '5,218', '4', '10']] },
+      category: { label: '按商品大类', columns: ['商品大类', '销售收入', '连带率', '件单价', '成交单数'], rows: [['香化护肤', '255,265', '2.5', '253', '23'], ['精品腕表', '185,632', '1.6', '1,856', '10'], ['彩妆香水', '126,890', '2.1', '189', '18'], ['免值品(26)', '98,320', '1.3', '702', '7']] }
+    };
+    const profileScopeData = {
+      team: {
+        kpis: '<div class="soft-tile"><div class="card-title">团队成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">目标达成 50%</div></div><div class="soft-tile"><div class="card-title">团队目标达成</div><div class="big">50%</div><div class="tile-note">全部柜组汇总</div></div>',
+        metrics: '<div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">件单价</div></div>'
+      },
+      counter: {
+        kpis: '<div class="soft-tile"><div class="card-title">主责柜组成交金额</div><div class="big">168 <small>元</small></div><div class="trend-up">目标达成 45%</div></div><div class="soft-tile"><div class="card-title">主责柜组目标达成</div><div class="big">45%</div><div class="tile-note">按人员均摊目标</div></div>',
+        metrics: '<div><div class="num">168</div><div class="label">销售数量</div></div><div><div class="num">60</div><div class="label">票数</div></div><div><div class="num">520</div><div class="label">进店人数</div></div><div><div class="num">11.5%</div><div class="label">转化率</div></div><div><div class="num">2.3</div><div class="label">连带率</div></div><div><div class="num">168</div><div class="label">件单价</div></div>'
+      }
+    };
 
     const distributionData = {
       counter: {
@@ -276,10 +333,37 @@
         rows: [['香化护肤', '255,265', '2.5', '253'], ['精品腕表', '185,632', '1.6', '1,856'], ['彩妆香水', '126,890', '2.1', '189'], ['免值品(26)', '98,320', '1.3', '702']]
       }
     };
+    const teamSalesDropdown = document.getElementById('teamSalesDropdown');
+    const teamSalesLabel = document.getElementById('teamSalesLabel');
+    const teamSalesHead = document.getElementById('teamSalesHead');
+    const teamSalesBody = document.getElementById('teamSalesBody');
+    const teamGroupDropdown = document.getElementById('teamGroupDropdown');
+    const teamGroupLabel = document.getElementById('teamGroupLabel');
+    const teamTimeDropdown = document.getElementById('teamTimeDropdown');
+    const teamTimeLabel = document.getElementById('teamTimeLabel');
     const distributionDropdown = document.getElementById('distributionDropdown');
+    const distributionTitle = document.getElementById('distributionTitle');
     const distributionLabel = document.getElementById('distributionLabel');
     const distributionHead = document.getElementById('distributionHead');
     const distributionBody = document.getElementById('distributionBody');
+    function renderTeamSales(type) {
+      const data = teamSalesData[type];
+      teamSalesLabel.textContent = data.label;
+      teamSalesHead.innerHTML = `<tr>${data.columns.map(column => `<th>${column}</th>`).join('')}</tr>`;
+      teamSalesBody.innerHTML = data.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('');
+      teamSalesDropdown.querySelectorAll('[data-team-sales]').forEach(btn => btn.classList.toggle('active', btn.dataset.teamSales === type));
+      teamSalesDropdown.classList.remove('open');
+    }
+    function setProfileScope(scope) {
+      const data = profileScopeData[scope];
+      topKpis.innerHTML = data.kpis;
+      metricGrid.innerHTML = data.metrics;
+      document.querySelectorAll('[data-profile-scope]').forEach(btn => btn.classList.toggle('active', btn.dataset.profileScope === scope));
+      distributionTitle.textContent = scope === 'team' ? '销售分布' : '销售情况';
+      renderDistribution(scope === 'team' ? 'counter' : 'category');
+      document.getElementById('barTitle').textContent = scope === 'team' ? '销售趋势' : '销售走势';
+      renderScopeChart(scope);
+    }
     function renderDistribution(type) {
       const data = distributionData[type];
       distributionLabel.textContent = data.label;
@@ -289,6 +373,14 @@
       distributionDropdown.classList.remove('open');
     }
 
+    const scopeChart = document.getElementById('scopeChart');
+    const barChartHtml = scopeChart.innerHTML;
+    const lineChartHtml = '<svg viewBox="0 0 340 240" width="100%" height="100%" aria-label="销售趋势折线图"><g stroke="#e6e6e6" stroke-width="1"><line x1="54" y1="28" x2="314" y2="28"/><line x1="54" y1="70" x2="314" y2="70"/><line x1="54" y1="112" x2="314" y2="112"/><line x1="54" y1="154" x2="314" y2="154"/><line x1="54" y1="196" x2="314" y2="196"/></g><g fill="#40515d" font-size="13"><text x="28" y="32">250</text><text x="28" y="74">200</text><text x="28" y="116">150</text><text x="28" y="158">100</text><text x="36" y="200">50</text></g><path d="M80 154 L132 120 L184 36 L236 154 L288 129 L288 196 L80 196 Z" fill="#2f7df0" opacity=".18"/><path d="M80 154 L132 120 L184 36 L236 154 L288 129" fill="none" stroke="#4e86e9" stroke-width="2.3" stroke-linejoin="round"/><g fill="#fff" stroke="#4e86e9" stroke-width="2.3"><circle cx="80" cy="154" r="3.3"/><circle cx="132" cy="120" r="3.3"/><circle cx="184" cy="36" r="3.3"/><circle cx="236" cy="154" r="3.3"/><circle cx="288" cy="129" r="3.3"/></g><line x1="54" y1="196" x2="314" y2="196" stroke="#65717b"/><g fill="#40515d" font-size="13"><text x="76" y="216">9</text><text x="128" y="216">10</text><text x="180" y="216">11</text><text x="232" y="216">12</text><text x="284" y="216">13</text></g></svg><div class="tooltip">11日：230</div>';
+    function renderScopeChart(scope) {
+      scopeChart.innerHTML = scope === 'team' ? lineChartHtml : barChartHtml;
+      scopeChart.dataset.chart = scope === 'team' ? 'line' : 'bar';
+      bindChartTooltip(scopeChart);
+    }
     const title = document.getElementById('employeeTitle');
     const bizLine = document.getElementById('bizLine');
     const bizLabel = document.getElementById('bizLabel');
@@ -337,16 +429,24 @@
       });
     });
 
-    document.querySelectorAll('.chart-wrap').forEach((wrap) => {
+    function bindChartTooltip(wrap) {
       const tip = wrap.querySelector('.tooltip');
+      if (!tip || wrap.dataset.tooltipBound === 'true') return;
+      wrap.dataset.tooltipBound = 'true';
       wrap.addEventListener('pointermove', (event) => {
+        const activeTip = wrap.querySelector('.tooltip');
         const rect = wrap.getBoundingClientRect();
-        tip.style.left = `${event.clientX - rect.left}px`;
-        tip.style.top = `${event.clientY - rect.top}px`;
-        tip.classList.add('visible');
+        activeTip.style.left = `${event.clientX - rect.left}px`;
+        activeTip.style.top = `${event.clientY - rect.top}px`;
+        activeTip.classList.add('visible');
       });
-      wrap.addEventListener('pointerleave', () => tip.classList.remove('visible'));
-    });
+      wrap.addEventListener('pointerleave', () => {
+        const activeTip = wrap.querySelector('.tooltip');
+        if (activeTip) activeTip.classList.remove('visible');
+      });
+    }
+    document.querySelectorAll('.chart-wrap').forEach(bindChartTooltip);
+    setProfileScope('team');
   </script>
 </body>
 </html>
