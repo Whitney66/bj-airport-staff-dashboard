@@ -122,6 +122,7 @@
     .rank-line { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 11px 0 8px; font-size: 12px; }
     .trophy { width: 22px; height: 22px; }
     .employee-grid { background: var(--soft); border-radius: 8px; margin-bottom: 18px; }
+    .drill-metric { display: block; text-align: center; }
     .goal-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: 18px; }
     .goal-duo .soft-tile { border-radius: 8px; }
     .bar-card { padding: 18px 6px 8px; background: transparent; margin: 0; }
@@ -168,7 +169,7 @@
           <div class="notice"><svg class="megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 11h4l9-5v12l-9-5H3z"/><path d="M19 9a4 4 0 0 1 0 6"/></svg><span>统计柜组单笔最高成交金额</span><span class="price">235,125</span><span>元</span></div>
           <div class="card hero-kpi"><div class="card-title">销售收入</div><div class="big">253</div><div class="trend-up">环比  ↑ 50%</div></div>
           <div class="target-row"><span>目标达成</span><span>目标： 50元</span></div><div class="progress"><span>50%</span></div>
-          <div class="card twins"><div class="metric-link"><div class="num">253</div><button data-target="returns">退货金额  ›</button></div><div class="divider"></div><div class="metric-link"><div class="num">253</div><button data-target="returns">退货件数  ›</button></div></div>
+          <div class="card twins"><div class="metric-link"><div class="num">253</div><button type="button">退货金额  ›</button></div><div class="divider"></div><div class="metric-link"><div class="num">253</div><button type="button">退货件数  ›</button></div></div>
           <div class="card grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">成交单数</div></div><div><div class="num">100</div><div class="label">购物人数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">票单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div></div>
           <div class="card chart-card"><h2 class="section-title">销售趋势</h2><div class="chart-wrap" data-chart="line"><svg viewBox="0 0 340 240" width="100%" height="100%" aria-label="销售趋势折线图"><g stroke="#e6e6e6" stroke-width="1"><line x1="54" y1="28" x2="314" y2="28"/><line x1="54" y1="70" x2="314" y2="70"/><line x1="54" y1="112" x2="314" y2="112"/><line x1="54" y1="154" x2="314" y2="154"/><line x1="54" y1="196" x2="314" y2="196"/></g><g fill="#40515d" font-size="13"><text x="28" y="32">250</text><text x="28" y="74">200</text><text x="28" y="116">150</text><text x="28" y="158">100</text><text x="36" y="200">50</text></g><path d="M80 154 L132 120 L184 36 L236 154 L288 129 L288 196 L80 196 Z" fill="#2f7df0" opacity=".18"/><path d="M80 154 L132 120 L184 36 L236 154 L288 129" fill="none" stroke="#4e86e9" stroke-width="2.3" stroke-linejoin="round"/><g fill="#fff" stroke="#4e86e9" stroke-width="2.3"><circle cx="80" cy="154" r="3.3"/><circle cx="132" cy="120" r="3.3"/><circle cx="184" cy="36" r="3.3"/><circle cx="236" cy="154" r="3.3"/><circle cx="288" cy="129" r="3.3"/></g><line x1="54" y1="196" x2="314" y2="196" stroke="#65717b"/><g fill="#40515d" font-size="13"><text x="76" y="216">9</text><text x="128" y="216">10</text><text x="180" y="216">11</text><text x="232" y="216">12</text><text x="284" y="216">13</text></g></svg><div class="tooltip">11日：230</div></div></div>
           <div class="card sales-card"><div class="sales-head"><h2 class="section-title">销售情况</h2><button class="select">按团队<span class="chev"></span></button></div><div class="table-scroller"><table><thead><tr><th>团队名称</th><th>销售收入</th><th>客单价</th><th>销售排名</th><th>成交单数</th></tr></thead><tbody><tr><td>[68681208]IWC团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>12,256</td><td>5</td><td>23</td></tr></tbody></table></div></div>
@@ -186,13 +187,13 @@
             <div class="employee-kpis" id="topKpis"><div class="soft-tile"><div class="card-title">成交金额</div><div class="big">253 <small>元</small></div><div class="trend-up">环比  ↑ 50%</div></div><div class="soft-tile"><div class="card-title">销售排名</div><div class="rank-line"><svg class="trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>超过本柜组<span class="accent">50%</span>的销售</span></div><strong>相较昨日上升1名</strong></div></div>
             <div class="target-row" style="padding:0 0 2px"><span id="targetTitle">目标达成(剩余:12,156元)</span><span id="targetRight">日目标： 50元</span></div><div class="progress" style="margin:10px 0 18px"><span>50%</span></div>
             <div class="goal-duo" id="goalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
-            <div class="employee-grid grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">客单价</div></div><div><div class="num linkish">253</div><div class="label">退货金额 ›</div></div><div><div class="num linkish">253</div><div class="label">退货件数 ›</div></div></div>
+            <div class="employee-grid grid6"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
           </div><i class="anno a2"></i>
         </section>
 
         <section class="page" id="returnPage">
-          <header class="topbar"><button class="back" data-target="employee" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title">退货明细</div><div></div></header>
+          <header class="topbar"><button class="back" data-target="employee" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="returnTitle">退货明细</div><div></div></header>
           <div class="return-list">
             <article class="return-card open"><div class="return-grid"><div><span class="label">销售单号：</span>144987052</div><div></div><div><span class="label">顾客姓名：</span>温涛涛</div><div><span class="label">退货时间：</span>2023-10-11 20:00:23</div><div><span class="label">退货商品：</span>5件 <button class="toggle" aria-label="展开">⌄</button></div><div><span class="label">退货金额：</span> 20,235</div></div><div class="return-details"><table><thead><tr><th>商品编码</th><th>名称</th><th>数量</th><th>金额</th></tr></thead><tbody><tr><td>F106457</td><td>雅诗兰黛</td><td>2</td><td>1000</td></tr><tr><td>&nbsp;</td><td></td><td></td><td></td></tr></tbody></table></div></article>
             <article class="return-card"><div class="return-grid"><div><span class="label">销售单号：</span>144987052</div><div></div><div><span class="label">顾客姓名：</span>温涛涛</div><div><span class="label">退货时间：</span>2023-10-11 20:00:20</div><div><span class="label">退货商品：</span>3件 <button class="toggle" aria-label="展开">⌃</button></div><div><span class="label">退货金额：</span> 20,235</div></div><div class="return-details"><table><thead><tr><th>商品编码</th><th>名称</th><th>数量</th><th>金额</th></tr></thead><tbody><tr><td>F106458</td><td>兰蔻精华</td><td>1</td><td>8235</td></tr></tbody></table></div></article>
@@ -202,17 +203,32 @@
       </main>
     </div>
   </div>
-  <nav class="page-switcher" aria-label="页面切换"><button class="active" data-target="team">团队</button><button data-target="employee">员工</button><button data-target="returns">退货</button></nav>
+  <nav class="page-switcher" aria-label="页面切换"><button class="active" data-target="team">团队</button><button data-target="employee">员工</button></nav>
 
   <script>
     const pages = { team: document.getElementById('teamPage'), employee: document.getElementById('employeePage'), returns: document.getElementById('returnPage') };
     const switcher = document.querySelectorAll('.page-switcher button');
+    const returnTitle = document.getElementById('returnTitle');
     function showPage(name) {
       Object.entries(pages).forEach(([key, el]) => el.classList.toggle('active', key === name));
-      switcher.forEach(btn => btn.classList.toggle('active', btn.dataset.target === name));
+      switcher.forEach(btn => btn.classList.toggle('active', btn.dataset.target === (name === 'returns' ? 'employee' : name)));
       document.querySelector('.app').scrollTop = 0;
     }
+    function showReturnDetail(view) {
+      returnTitle.textContent = view === 'count' ? '退货件数明细' : '退货金额明细';
+      document.querySelectorAll('.return-card').forEach((card, index) => {
+        card.classList.toggle('open', index === 0 || view === 'count');
+        const toggle = card.querySelector('.toggle');
+        toggle.textContent = card.classList.contains('open') ? '⌄' : '⌃';
+      });
+      showPage('returns');
+    }
     document.addEventListener('click', (event) => {
+      const returnBtn = event.target.closest('[data-return-view]');
+      if (returnBtn) {
+        showReturnDetail(returnBtn.dataset.returnView);
+        return;
+      }
       const targetBtn = event.target.closest('[data-target]');
       if (targetBtn) showPage(targetBtn.dataset.target);
     });
