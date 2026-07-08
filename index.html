@@ -98,15 +98,15 @@
     .sales-card { padding: 17px 10px 26px; overflow: hidden; }
     .sales-head { display: flex; align-items: center; justify-content: space-between; padding: 0 8px 18px; }
     .sales-head .select { width: 110px; color: #3f4d58; }
-    .table-scroller { position: relative; overflow-x: auto; overflow-y: hidden; padding-bottom: 8px; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; }
-    .table-scroller::after { content: ""; position: absolute; right: 0; top: 0; bottom: 8px; width: 28px; pointer-events: none; background: linear-gradient(90deg, rgba(255,255,255,0), #fff 82%); }
-    .table-scroller::-webkit-scrollbar { height: 7px; }
-    .table-scroller::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 999px; }
-    .table-scroller::-webkit-scrollbar-thumb { background: #bfc4c8; border-radius: 999px; }
+    .table-scroller { position: relative; overflow-x: auto; overflow-y: hidden; padding-bottom: 12px; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; scrollbar-color: #bfc4c8 #f1f1f1; scrollbar-width: thin; }
+    .table-scroller::after { content: ""; position: absolute; right: 0; top: 0; bottom: 12px; width: 28px; pointer-events: none; background: linear-gradient(90deg, rgba(255,255,255,0), #fff 82%); }
+    .table-scroller::-webkit-scrollbar { height: 11px; }
+    .table-scroller::-webkit-scrollbar-track { background: #eef0f2; border-radius: 999px; }
+    .table-scroller::-webkit-scrollbar-thumb { background: #bfc4c8; border: 2px solid #eef0f2; border-radius: 999px; }
     table { border-collapse: separate; border-spacing: 0; min-width: 820px; width: 820px; background: #fff; font-size: 13px; }
     th, td { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 9px 8px; text-align: center; white-space: nowrap; }
     th { font-weight: 500; border-top: 1px solid var(--line); }
-    td:first-child, th:first-child { position: sticky; left: 0; z-index: 2; min-width: 112px; max-width: 112px; text-align: left; background: #fff; border-left: 1px solid var(--line); box-shadow: 5px 0 8px rgba(0,0,0,.04); }
+    td:first-child, th:first-child { position: sticky; left: 0; z-index: 2; min-width: 132px; max-width: 132px; text-align: left; background: #fff; border-left: 1px solid var(--line); box-shadow: 5px 0 8px rgba(0,0,0,.04); }
     th:first-child { z-index: 3; }
 
     .profile { background: #fff; border-bottom: 5px solid #f0f0f0; padding: 24px 28px 16px; display: grid; grid-template-columns: 74px 1fr 102px; align-items: center; gap: 12px; }
@@ -153,6 +153,7 @@
     .dropdown.open .dropdown-menu { display: block; max-height: 220px; opacity: 1; transform: translateY(0); }
     .dropdown-menu button { display: block; width: 100%; padding: 10px 12px; text-align: left; font-size: 14px; }
     .dropdown-menu button.active { color: var(--blue); font-weight: 700; }
+    .distribution .table-scroller { margin-right: -14px; }
     .distribution table { min-width: 820px; width: 820px; font-size: 13px; }
     .distribution th, .distribution td { padding: 11px 8px; }
 
@@ -209,7 +210,7 @@
             <div class="goal-duo" id="monthGoalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
             <div class="employee-grid grid6" id="metricGrid"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" id="scopeChart" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
-            <section class="distribution"><div class="distribution-head"><h2 class="section-title" id="distributionTitle">销售情况</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="team">按团队</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></section>
+            <section class="distribution"><div class="distribution-head"><h2 class="section-title" id="distributionTitle">销售情况</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="team">按团队</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><div class="table-scroller"><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></div></section>
           </div>
         </section>
 
