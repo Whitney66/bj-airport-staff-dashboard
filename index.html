@@ -391,7 +391,7 @@
         document.querySelectorAll('.tabs button').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         const range = tab.dataset.range;
-        title.textContent = range === '今日' ? '员工看板' : '店长看板';
+        title.textContent = '店长看板';
         bizLabel.textContent = '销售业绩';
         monthGoalDuo.hidden = !(range === '今日' || range === '本月');
       });
