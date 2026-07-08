@@ -156,6 +156,14 @@
     .distribution .table-scroller { margin-right: -14px; }
     .distribution table { min-width: 820px; width: 820px; font-size: 13px; }
     .distribution th, .distribution td { padding: 11px 8px; }
+    .sales-rank { margin-top: 18px; }
+    .rank-list { display: grid; gap: 8px; }
+    .rank-item { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 10px; min-height: 48px; padding: 10px 12px; background: #fff; border-radius: 8px; }
+    .rank-no { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: #eef0f2; color: #596671; font-weight: 700; font-size: 13px; }
+    .rank-item:nth-child(-n+3) .rank-no { background: #fff2d5; color: var(--orange); }
+    .rank-name { font-size: 15px; font-weight: 600; }
+    .rank-meta { margin-top: 4px; color: var(--muted); font-size: 12px; }
+    .rank-value { color: #1f2933; font-size: 15px; font-weight: 700; }
 
     .return-list { padding: 18px 12px 28px; }
     .return-card { background: #fff; border-radius: 8px; padding: 18px 12px; margin-bottom: 12px; font-size: 13px; }
@@ -210,7 +218,7 @@
             <div class="goal-duo" id="monthGoalDuo" hidden><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">当月剩余目标</div></div><div class="soft-tile"><div class="big">253 <small>元</small></div><div class="card-title">剩余每日目标</div></div></div>
             <div class="employee-grid grid6" id="metricGrid"><div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">票数</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">860</div><div class="label">进店人数</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button></div>
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" id="scopeChart" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
-            <section class="distribution"><div class="distribution-head"><h2 class="section-title" id="distributionTitle">销售情况</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="team">按团队</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><div class="table-scroller"><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></div></section>
+            <section class="distribution"><div class="distribution-head"><h2 class="section-title" id="distributionTitle">销售情况</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按柜组</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="team">按团队</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="category">按商品大类</button></div></div></div><div class="table-scroller"><table><thead id="distributionHead"><tr><th>柜组名称</th><th>销售收入</th><th>进店人数</th><th>转化率</th></tr></thead><tbody id="distributionBody"><tr><td>[68681208]IWC团队</td><td>255,265</td><td>860</td><td>11.6%</td></tr><tr><td>[68680403]科颜氏</td><td>255,265</td><td>720</td><td>13.9%</td></tr><tr><td>[68680406]YSL团队</td><td>255,265</td><td>650</td><td>15.4%</td></tr><tr><td>[68680407]赫莲娜团队</td><td>255,265</td><td>580</td><td>17.2%</td></tr></tbody></table></div></section><section class="sales-rank" id="salesRankSection"><h2 class="section-title">销售排名</h2><div class="rank-list" id="salesRankList"></div></section>
           </div>
         </section>
 
@@ -322,6 +330,11 @@
         metrics: '<div><div class="num">168</div><div class="label">销售数量</div></div><div><div class="num">60</div><div class="label">票数</div></div><div><div class="num">520</div><div class="label">进店人数</div></div><div><div class="num">11.5%</div><div class="label">转化率</div></div><div><div class="num">2.3</div><div class="label">连带率</div></div><div><div class="num">168</div><div class="label">件单价</div></div><div><div class="num">168</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">168</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">168</div><div class="label">退货件数 ›</div></button>'
       }
     };
+    const salesRankData = {
+      '昨日': [['小毛', 'IWC柜组', '88,265'], ['李敏', '科颜氏柜组', '76,520'], ['王雪', 'YSL柜组', '68,300'], ['张宁', '赫莲娜柜组', '52,180']],
+      '今日': [['小毛', 'IWC柜组', '96,520'], ['王雪', 'YSL柜组', '82,360'], ['李敏', '科颜氏柜组', '79,820'], ['张宁', '赫莲娜柜组', '58,650']],
+      '本月': [['李敏', '科颜氏柜组', '586,200'], ['小毛', 'IWC柜组', '552,680'], ['王雪', 'YSL柜组', '498,360'], ['张宁', '赫莲娜柜组', '426,900']]
+    };
 
     const distributionData = teamSalesData;
     const teamSalesDropdown = document.getElementById('teamSalesDropdown');
@@ -337,6 +350,8 @@
     const distributionLabel = document.getElementById('distributionLabel');
     const distributionHead = document.getElementById('distributionHead');
     const distributionBody = document.getElementById('distributionBody');
+    const salesRankSection = document.getElementById('salesRankSection');
+    const salesRankList = document.getElementById('salesRankList');
     function renderTeamSales(type) {
       const data = teamSalesData[type];
       teamSalesLabel.textContent = data.label;
@@ -369,6 +384,12 @@
       distributionDropdown.querySelectorAll('[data-distribution]').forEach(btn => btn.classList.toggle('active', btn.dataset.distribution === type));
       distributionDropdown.classList.remove('open');
     }
+    function renderSalesRank(range) {
+      const rows = salesRankData[range];
+      salesRankSection.hidden = !rows;
+      if (!rows) return;
+      salesRankList.innerHTML = rows.map((row, index) => `<div class="rank-item"><div class="rank-no">${index + 1}</div><div><div class="rank-name">${row[0]}</div><div class="rank-meta">${row[1]}</div></div><div class="rank-value">${row[2]}</div></div>`).join('');
+    }
 
     const scopeChart = document.getElementById('scopeChart');
     const barChartHtml = scopeChart.innerHTML;
@@ -395,6 +416,7 @@
         title.textContent = '店长看板';
         bizLabel.textContent = '销售业绩';
         monthGoalDuo.hidden = !(range === '今日' || range === '本月');
+        renderSalesRank(range);
       });
     });
 
@@ -424,6 +446,7 @@
     }
     document.querySelectorAll('.chart-wrap').forEach(bindChartTooltip);
     setProfileScope('team');
+    renderSalesRank('今日');
   </script>
 </body>
 </html>
