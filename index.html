@@ -158,12 +158,17 @@
     .distribution th, .distribution td { padding: 11px 8px; }
     .sales-rank { margin-top: 18px; }
     .rank-list { display: grid; gap: 8px; }
-    .rank-item { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 10px; min-height: 48px; padding: 10px 12px; background: #fff; border-radius: 8px; }
-    .rank-no { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; background: #eef0f2; color: #596671; font-weight: 700; font-size: 13px; }
+    .rank-item { display: grid; grid-template-columns: 30px 1fr; gap: 10px; min-height: 72px; padding: 10px 12px; background: #fff; border-radius: 8px; }
+    .rank-no { width: 26px; height: 26px; display: grid; place-items: center; align-self: center; border-radius: 50%; background: #eef0f2; color: #596671; font-weight: 700; font-size: 13px; }
     .rank-item:nth-child(-n+3) .rank-no { background: #fff2d5; color: var(--orange); }
+    .rank-main { min-width: 0; }
+    .rank-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
     .rank-name { font-size: 15px; font-weight: 600; }
-    .rank-meta { margin-top: 4px; color: var(--muted); font-size: 12px; }
-    .rank-value { color: #1f2933; font-size: 15px; font-weight: 700; }
+    .rank-meta { color: var(--muted); font-size: 12px; }
+    .rank-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+    .rank-metric { padding: 7px 6px; background: #f6f7f8; border-radius: 6px; text-align: center; }
+    .rank-metric strong { display: block; color: #1f2933; font-size: 14px; line-height: 1.1; }
+    .rank-metric span { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
 
     .return-list { padding: 18px 12px 28px; }
     .return-card { background: #fff; border-radius: 8px; padding: 18px 12px; margin-bottom: 12px; font-size: 13px; }
@@ -331,9 +336,9 @@
       }
     };
     const salesRankData = {
-      '昨日': [['小毛', 'IWC柜组', '88,265'], ['李敏', '科颜氏柜组', '76,520'], ['王雪', 'YSL柜组', '68,300'], ['张宁', '赫莲娜柜组', '52,180']],
-      '今日': [['小毛', 'IWC柜组', '96,520'], ['王雪', 'YSL柜组', '82,360'], ['李敏', '科颜氏柜组', '79,820'], ['张宁', '赫莲娜柜组', '58,650']],
-      '本月': [['李敏', '科颜氏柜组', '586,200'], ['小毛', 'IWC柜组', '552,680'], ['王雪', 'YSL柜组', '498,360'], ['张宁', '赫莲娜柜组', '426,900']]
+      '昨日': [['小毛', 'IWC柜组', '88,265', '32', '68'], ['李敏', '科颜氏柜组', '76,520', '28', '61'], ['王雪', 'YSL柜组', '68,300', '25', '54'], ['张宁', '赫莲娜柜组', '52,180', '19', '42']],
+      '今日': [['小毛', 'IWC柜组', '96,520', '35', '72'], ['王雪', 'YSL柜组', '82,360', '30', '66'], ['李敏', '科颜氏柜组', '79,820', '29', '63'], ['张宁', '赫莲娜柜组', '58,650', '21', '45']],
+      '本月': [['李敏', '科颜氏柜组', '586,200', '216', '468'], ['小毛', 'IWC柜组', '552,680', '205', '436'], ['王雪', 'YSL柜组', '498,360', '186', '398'], ['张宁', '赫莲娜柜组', '426,900', '158', '342']]
     };
 
     const distributionData = teamSalesData;
@@ -388,7 +393,7 @@
       const rows = salesRankData[range];
       salesRankSection.hidden = !rows;
       if (!rows) return;
-      salesRankList.innerHTML = rows.map((row, index) => `<div class="rank-item"><div class="rank-no">${index + 1}</div><div><div class="rank-name">${row[0]}</div><div class="rank-meta">${row[1]}</div></div><div class="rank-value">${row[2]}</div></div>`).join('');
+      salesRankList.innerHTML = rows.map((row, index) => `<div class="rank-item"><div class="rank-no">${index + 1}</div><div class="rank-main"><div class="rank-top"><div class="rank-name">${row[0]}</div><div class="rank-meta">${row[1]}</div></div><div class="rank-metrics"><div class="rank-metric"><strong>${row[2]}</strong><span>销售额</span></div><div class="rank-metric"><strong>${row[3]}</strong><span>单数</span></div><div class="rank-metric"><strong>${row[4]}</strong><span>件数</span></div></div></div></div>`).join('');
     }
 
     const scopeChart = document.getElementById('scopeChart');
