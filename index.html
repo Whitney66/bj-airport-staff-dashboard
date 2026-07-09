@@ -406,8 +406,7 @@
     }
     function renderScopeChart(range) {
       range = range === '今年' ? '本年' : range;
-      barCard.hidden = range === '本年';
-      if (barCard.hidden) return;
+      barCard.hidden = false;
       const data = trendData[range] || trendData['今日'];
       const max = Math.max(...data.values);
       const ticks = [max, max * .75, max * .5, max * .25, 0];
