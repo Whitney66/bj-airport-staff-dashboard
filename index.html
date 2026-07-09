@@ -333,8 +333,8 @@
       brand: { label: '按品牌', columns: ['品牌名称', ...salesColumns], rows: brandNames.map((name, index) => [name, (6820 - index * 248).toLocaleString('zh-CN'), (10.8 - index * .2).toFixed(1) + '%', (186520 - index * 7350).toLocaleString('zh-CN'), (8826 - index * 218).toLocaleString('zh-CN'), (2.2 - index * .03).toFixed(1), (1554 - index * 27).toLocaleString('zh-CN'), 120 - index * 3, 18 - index % 6, index + 1]) }
     };
     const profileScopeData = {
-      team: { amountTitle: '团队成交金额', targetTitle: '团队目标达成', amountValue: '253', targetValue: '50%', targetNote: '剩余 12,156 元', targetText: '团队目标达成(剩余:12,156元)', progress: '50%', targets: { '昨日': '48元', '今日': '50元', '本月': '1,500元', '本年': '18,000元' }, metrics: '<div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">购物人数</div></div><div><div class="num">860</div><div class="label">进店客流</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button>' },
-      counter: { amountTitle: '主责柜组成交金额', targetTitle: '主责柜组目标达成', amountValue: '168', targetValue: '45%', targetNote: '剩余 6,820 元', targetText: '主责柜组目标达成(剩余:6,820元)', progress: '45%', targets: { '昨日': '35元', '今日': '40元', '本月': '1,200元', '本年': '14,400元' }, metrics: '<div><div class="num">168</div><div class="label">销售数量</div></div><div><div class="num">60</div><div class="label">购物人数</div></div><div><div class="num">520</div><div class="label">进店客流</div></div><div><div class="num">11.5%</div><div class="label">转化率</div></div><div><div class="num">2.3</div><div class="label">连带率</div></div><div><div class="num">168</div><div class="label">件单价</div></div><div><div class="num">168</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">168</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">168</div><div class="label">退货件数 ›</div></button>' }
+      team: { amountTitle: '团队成交金额', targetTitle: '团队目标达成', amountValue: '253', targetValue: '50%', targetNote: '剩余 12,156 元', targetText: '团队目标达成', progress: '50%', targets: { '昨日': { amount: '246', targetValue: '62%', target: '48元', remain: '9,860元', progress: '62%', trend: '<span>环比 ↑ 42%</span><span>同比 ↑ 26%</span>' }, '今日': { amount: '253', targetValue: '50%', target: '50元', remain: '12,156元', progress: '50%', trend: '<span>环比 ↑ 50%</span><span>同比 ↑ 30%</span>' }, '本月': { amount: '7,860', targetValue: '58%', target: '1,500元', remain: '86,200元', progress: '58%', trend: '<span>环比 ↑ 18%</span><span>同比 ↑ 22%</span>' }, '本年': { amount: '89,600', targetValue: '72%', target: '18,000元', remain: '620,000元', progress: '72%', trend: '<span>环比 ↑ 12%</span><span>同比 ↑ 35%</span>' } }, metrics: '<div><div class="num">253</div><div class="label">销售数量</div></div><div><div class="num">100</div><div class="label">购物人数</div></div><div><div class="num">860</div><div class="label">进店客流</div></div><div><div class="num">11.6%</div><div class="label">转化率</div></div><div><div class="num">2.5</div><div class="label">连带率</div></div><div><div class="num">253</div><div class="label">件单价</div></div><div><div class="num">253</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">253</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">253</div><div class="label">退货件数 ›</div></button>' },
+      counter: { amountTitle: '主责柜组成交金额', targetTitle: '主责柜组目标达成', amountValue: '168', targetValue: '45%', targetNote: '剩余 6,820 元', targetText: '主责柜组目标达成', progress: '45%', targets: { '昨日': { amount: '156', targetValue: '52%', target: '35元', remain: '4,580元', progress: '52%', trend: '<span>环比 ↑ 32%</span><span>同比 ↑ 16%</span>' }, '今日': { amount: '168', targetValue: '45%', target: '40元', remain: '6,820元', progress: '45%', trend: '<span>环比 ↑ 45%</span><span>同比 ↑ 20%</span>' }, '本月': { amount: '4,680', targetValue: '54%', target: '1,200元', remain: '48,600元', progress: '54%', trend: '<span>环比 ↑ 14%</span><span>同比 ↑ 18%</span>' }, '本年': { amount: '62,400', targetValue: '68%', target: '14,400元', remain: '386,000元', progress: '68%', trend: '<span>环比 ↑ 10%</span><span>同比 ↑ 28%</span>' } }, metrics: '<div><div class="num">168</div><div class="label">销售数量</div></div><div><div class="num">60</div><div class="label">购物人数</div></div><div><div class="num">520</div><div class="label">进店客流</div></div><div><div class="num">11.5%</div><div class="label">转化率</div></div><div><div class="num">2.3</div><div class="label">连带率</div></div><div><div class="num">168</div><div class="label">件单价</div></div><div><div class="num">168</div><div class="label">客单价</div></div><button class="drill-metric" data-return-view="amount"><div class="num linkish">168</div><div class="label">退货金额 ›</div></button><button class="drill-metric" data-return-view="count"><div class="num linkish">168</div><div class="label">退货件数 ›</div></button>' }
     };
     const trendData = {
       '昨日': { type: 'area', labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17'], values: [12, 8, 2, 10, 4, 6, 18, 30, 32, 34, 280, 360, 390, 468, 420, 424, 418, 88], tip: '2026-07-08 17:00<br>成交金额：878,466.57<br>顾客人数：280' },
@@ -383,23 +383,25 @@
       return document.querySelector('[data-profile-scope].active')?.dataset.profileScope || 'team';
     }
     function updateRangeTarget(scope = getActiveScope(), range = getActiveRange()) {
-      const target = profileScopeData[scope].targets[range] || profileScopeData[scope].targets['今日'];
-      document.getElementById('rangeTargetLabel').textContent = '目标：' + target;
+      const data = profileScopeData[scope];
+      const target = data.targets[range] || data.targets['今日'];
+      document.getElementById('amountValue').textContent = target.amount;
+      document.getElementById('targetValue').textContent = target.targetValue;
+      document.querySelector('#amountSummary .tile-note').textContent = '剩余 ' + target.remain;
+      document.querySelector('#amountSummary .trend-pair').innerHTML = target.trend;
+      document.querySelector('#scopeTargetRow span:first-child').textContent = data.targetText + '(剩余:' + target.remain + ')';
+      document.getElementById('rangeTargetLabel').textContent = '目标：' + target.target;
+      const progress = document.querySelector('#scopeProgress span');
+      progress.textContent = target.progress;
+      progress.style.width = target.progress;
     }
     function setProfileScope(scope, counterName = document.getElementById('counterPickLabel')?.textContent || '主责柜组') {
       const data = profileScopeData[scope];
       metricGrid.innerHTML = data.metrics;
       document.getElementById('amountTitle').textContent = data.amountTitle;
-      document.getElementById('amountValue').textContent = data.amountValue;
       document.getElementById('targetTitle').textContent = data.targetTitle;
-      document.getElementById('targetValue').textContent = data.targetValue;
-      document.querySelector('#amountSummary .tile-note').textContent = data.targetNote;
-      document.querySelector('#amountSummary .trend-pair').innerHTML = scope === 'team' ? '<span>环比 ↑ 50%</span><span>同比 ↑ 30%</span>' : '<span>环比 ↑ 45%</span><span>同比 ↑ 20%</span>';
-      document.querySelector('#scopeTargetRow span:first-child').textContent = scope === 'team' ? data.targetText : counterName + '目标达成(剩余:6,820元)';
+      data.targetText = scope === 'team' ? '团队目标达成' : counterName + '目标达成';
       updateRangeTarget(scope);
-      const progress = document.querySelector('#scopeProgress span');
-      progress.textContent = data.progress;
-      progress.style.width = data.progress;
       document.querySelectorAll('[data-profile-scope]').forEach(btn => btn.classList.toggle('active', btn.dataset.profileScope === scope));
       distributionTitle.textContent = '销售情况';
       distributionDropdown.querySelector('.dropdown-menu').innerHTML = scope === 'team' ? '<button class="active" type="button" data-distribution="team">按团队</button><button type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="category">按商品大类</button><button type="button" data-distribution="brand">按品牌</button>' : '<button class="active" type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="category">按商品大类</button><button type="button" data-distribution="brand">按品牌</button>';
