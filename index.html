@@ -110,6 +110,7 @@
     th:first-child { z-index: 3; }
     th:nth-child(3), td:nth-child(3), th:nth-last-child(1), td:nth-last-child(1) { min-width: 68px; }
     th:nth-child(4), td:nth-child(4) { min-width: 126px; }
+    table[data-view="brand"] td:first-child, table[data-view="brand"] th:first-child { min-width: 260px; max-width: 260px; }
 
     .profile { background: #fff; border-bottom: 5px solid #f0f0f0; padding: 24px 28px 16px; display: grid; grid-template-columns: 74px 1fr 102px; align-items: center; gap: 12px; }
     .avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#d9e4ef,#8798a8); }
@@ -137,6 +138,7 @@
     .employee-grid { background: var(--soft); border-radius: 8px; margin-bottom: 18px; }
     .drill-metric { display: block; text-align: center; }
     .goal-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-bottom: 18px; }
+    .goal-duo[hidden] { display: none; }
     .goal-duo .soft-tile { border-radius: 8px; }
     .bar-card { padding: 18px 6px 8px; background: transparent; margin: 0; }
     .bar-card .chart-wrap { height: 278px; }
@@ -369,6 +371,7 @@
     function renderTeamSales(type) {
       const data = teamSalesData[type];
       teamSalesLabel.textContent = data.label;
+      teamSalesHead.closest('table').dataset.view = type;
       renderRows(teamSalesHead, teamSalesBody, data);
       teamSalesDropdown.querySelectorAll('[data-team-sales]').forEach(btn => btn.classList.toggle('active', btn.dataset.teamSales === type));
       teamSalesDropdown.classList.remove('open');
@@ -396,6 +399,7 @@
     function renderDistribution(type) {
       const data = distributionData[type];
       distributionLabel.textContent = data.label;
+      distributionHead.closest('table').dataset.view = type;
       renderRows(distributionHead, distributionBody, data);
       distributionDropdown.querySelectorAll('[data-distribution]').forEach(btn => btn.classList.toggle('active', btn.dataset.distribution === type));
       distributionDropdown.classList.remove('open');
