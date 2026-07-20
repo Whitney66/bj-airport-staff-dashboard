@@ -113,6 +113,7 @@
     th:first-child { z-index: 3; }
     th:nth-child(3), td:nth-child(3), th:nth-last-child(1), td:nth-last-child(1) { min-width: 68px; }
     th:nth-child(4), td:nth-child(4) { min-width: 126px; }
+    table[data-view="counter"] td:first-child, table[data-view="counter"] th:first-child { min-width: 230px; max-width: 230px; }
     table[data-view="brand"] td:first-child, table[data-view="brand"] th:first-child { min-width: 260px; max-width: 260px; }
 
     .profile { background: #fff; border-bottom: 5px solid #f0f0f0; padding: 24px 28px 16px; display: grid; grid-template-columns: 74px 1fr 102px; align-items: center; gap: 12px; }
@@ -359,7 +360,7 @@
     });
 
     const teamNames = ['T3香化', 'T3烟酒', 'T3精品专卖', 'T3精品综合', 'T3入境'];
-    const counterNames = ['72221601', '72221602', '72221603', '72221604', '72221605', '72221607', '72221801', '72221704', '72222801', '72222802', '72222803', '72222804', '72222805', '72222806'];
+    const counterNames = ['[72222201]T3E14香化', '[72222401]T3E18香化', '[72221301]T3E03', '[72222501]T3E19', '[72221201]T3E02烟酒', '[72221501]T3E07', '[72222301]T3E15', '[72222901]T3E23', '[72221601]T3E0801精品Chloe', '[72221602]T3E0802精品Kenzo', '[72221603]T3E0803精品MCM', '[72221604]T3E0804精品Coach', '[72221605]T3E0805精品TB', '[72221607]T3E0807精品Fashion', '[72221801]T3E1001精品', '[72221704]T3E0904精品', '[72222801]T3E2201精品BV', '[72222802]T3E2202精品YSL', '[72222803]巴黎世家', '[72222804]T3E2204精品Burberry', '[72222805]T3E2205精品Moncler', '[72222806]T3E2206精品Ferragamo', '[72221401]T3E05精品太阳镜', '[72221606]T3E0806精品Montblanc', '[72221701]T3E0901精品', '[72221702]T3E0902精品', '[72221802]T3E1002精品', '[72221901]T3E1101精品TUMI', '[72221902]T3E1102', '[72222601]T3E2001精品Chopard', '[72222602]T3E2002精品Bvlgari', '[72222603]T3E2003精品Qeelin', '[72222604]T3E2004精品Omega', '[72222701]T3E2101', '[72222702]T3E2102', '[72223001]T3E24', '[72225101]T3CI1', '[72225102]T3CI2', '[72225103]T3CI3', '[72225104]T3CI4'];
     const categoryNames = ['[01]进口酒', '[03]进口香化', '[06]进口精品', '[07]进口食品', '[07]进口食品及百货', '[08]代理品牌商品', '[09]有税国产品', '[14]统购有税精品', '[15]退税精品', '[16]统购有税', '[19]有税进口酒', '[20]退税商品', '[24]海口自采有税', '[25]有税国产酒', '[26]免值品'];
     const brandNames = ['010001HENNESSY轩尼诗', '[010003] JOHNNIE WALKER 尊尼获加', '[010005] SMIRNOFF斯米诺', '[010007] GORDON\'S 哥顿', '[010009] BAILEY\'S 百利甜', '[010010] DOM PERIGNON唐培里侬', '[010011] MOET ET CHANDON 酩悦', '[010012] MARTELL 马爹利', '[010015] CHIVAS REGAL 芝华士', '[010016] ROYAL SALUTE皇家礼炮', '[010017] GLENLIVET 格兰威特', '[010018] WILD TURKEY 威凤凰', '[010019] JAMESON 尊美醇', '[010028] CUTTY SARK顺风', '[010045] REMY MARTIN 人头马'];
     const richColumns = ['转化率排名', '转化率', '成交金额', '目标达成', '进店客流', '购物人数', '连带率', '件单价', '客单价', '销售数量', '成交单数'];
