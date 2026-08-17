@@ -116,7 +116,7 @@
     table[data-view="counter"] td:first-child, table[data-view="counter"] th:first-child { min-width: 136px; max-width: 136px; text-align: center; white-space: normal; word-break: break-all; line-height: 1.35; }
     table[data-view="brand"] td:first-child, table[data-view="brand"] th:first-child { min-width: 170px; max-width: 170px; text-align: center; white-space: normal; word-break: break-word; overflow-wrap: anywhere; line-height: 1.35; }
 
-    .profile { background: #fff; border-bottom: 5px solid #f0f0f0; padding: 24px 28px 16px; display: grid; grid-template-columns: 74px 1fr 102px; align-items: center; gap: 12px; }
+    .profile { background: #fff; border-bottom: 5px solid #f0f0f0; padding: 24px 28px 16px; display: grid; grid-template-columns: 74px 1fr auto; align-items: center; gap: 12px; }
     .avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg,#d9e4ef,#8798a8); }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
     .name { font-size: 18px; margin-bottom: 8px; }
@@ -151,12 +151,26 @@
     .dropdown-menu { position: absolute; right: 0; top: 43px; z-index: 6; width: 140px; display: block; max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-4px); transition: max-height .18s ease, opacity .18s ease, transform .18s ease; background: #fff; border: 1px solid #e5e5e5; box-shadow: 0 8px 18px rgba(0,0,0,.12); }
     .toolbar .dropdown-trigger { min-width: 132px; background: transparent; font-size: 17px; padding: 0; }
     .toolbar .dropdown-menu { left: 0; right: auto; top: 36px; }
-    .profile-switch { justify-self: end; position: relative; }
-    .profile-switch .segmented { grid-template-columns: repeat(3, auto); }
-    .profile-switch .segmented button { min-width: 48px; padding: 0 7px; }
-    .counter-pick { position: relative; }
-    .counter-pick > button { width: 76px; }
-    .counter-pick .dropdown-menu { top: 36px; right: 0; width: 104px; min-width: 104px; border-radius: 0 0 8px 8px; max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-4px); transition: max-height .18s ease, opacity .18s ease, transform .18s ease; }
+    .profile-switch { justify-self: end; }
+    .store-trigger { min-width: 76px; height: 34px; display: flex; align-items: center; justify-content: center; gap: 9px; padding: 0 12px; border-radius: 8px; background: #eceef1; color: #3f4d58; font-size: 13px; }
+    .store-trigger .chev { width: 9px; height: 9px; margin-top: -4px; }
+    .cascade-panel { position: absolute; inset: 0; z-index: 12; display: none; flex-direction: column; background: #fff; }
+    .cascade-panel.open { display: flex; }
+    .cascade-head { height: 54px; flex: none; display: grid; grid-template-columns: 54px 1fr 54px; align-items: center; border-bottom: 1px solid #ededed; }
+    .cascade-head strong { text-align: center; font-size: 17px; }
+    .cascade-head button { height: 100%; color: var(--blue); font-size: 14px; }
+    .cascade-head .cascade-cancel { color: #596671; }
+    .cascade-columns { min-height: 0; flex: 1; display: grid; grid-template-columns: 27% 31% 42%; background: #f5f5f5; }
+    .cascade-column { min-width: 0; overflow-y: auto; border-right: 1px solid #e3e5e8; background: #f2f3f5; }
+    .cascade-column:last-child { border-right: 0; background: #fff; }
+    .cascade-column-title { position: sticky; top: 0; z-index: 2; padding: 13px 10px 9px; background: inherit; color: #53606b; text-align: center; font-size: 14px; }
+    .cascade-option { width: 100%; min-height: 52px; display: grid; grid-template-columns: 22px minmax(0,1fr); align-items: center; gap: 7px; padding: 8px 9px; text-align: left; color: #4d5660; font-size: 13px; line-height: 1.35; }
+    .cascade-option.active { background: #fff; color: #111; font-weight: 700; }
+    .cascade-column:last-child .cascade-option.active { background: #f5f8ff; }
+    .cascade-check { width: 20px; height: 20px; border: 2px solid #757d86; border-radius: 3px; background: #fff; position: relative; }
+    .cascade-option.selected .cascade-check { border-color: #547ce9; background: #547ce9; }
+    .cascade-option.selected .cascade-check::after { content: ""; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+    .cascade-name { overflow: hidden; text-overflow: ellipsis; }
     .dropdown.open .dropdown-menu { display: block; max-height: 220px; opacity: 1; transform: translateY(0); }
     .dropdown-menu button { display: block; width: 100%; padding: 10px 12px; text-align: left; font-size: 14px; }
     .dropdown-menu button.active { color: var(--blue); font-weight: 700; }
@@ -239,7 +253,7 @@
 
         <section class="page employee active" id="employeePage">
           <header class="topbar"><button class="back" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 4 7 12l8 8"/></svg></button><div class="title" id="employeeTitle">店长看板</div><div></div></header>
-          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23f7f7f5'/%3E%3Cellipse cx='46' cy='54' rx='34' ry='28' fill='%23e7e8e4'/%3E%3Cpath d='M17 45C20 25 35 14 50 17c18 3 29 17 31 37 3 23-17 35-36 32-19-2-32-18-28-41Z' fill='%23d8d9d5'/%3E%3Cpath d='M23 45 14 24l23 11M67 36l21-12-8 25' fill='%23eef0ec' stroke='%239da1a1' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 23c18-12 41-12 59 7 3 6 4 13 4 22-20-23-45-26-68-10 0-8 1-14 5-19Z' fill='%2334383b' opacity='.9'/%3E%3Cpath d='M14 15c10 6 22 9 35 10M8 28c14 2 23 5 34 11M18 76c12-4 21-5 32-2M65 68c10-2 18-1 26 3' stroke='%239a9d9b' stroke-width='5' stroke-linecap='round' opacity='.45'/%3E%3Cpath d='M28 59c9 6 18 7 28 1M63 60c8 2 15 1 22-2' stroke='%23323638' stroke-width='2' stroke-linecap='round' opacity='.65'/%3E%3Cpath d='M51 63c3 0 5 2 5 4 0 3-4 5-7 4-3 0-5-3-4-5 1-2 3-3 6-3Z' fill='%23ec7d4e'/%3E%3Cpath d='M34 72c-11 0-20 5-28 11M39 75c-9 3-17 8-24 16M65 72c10 0 18 4 26 10M61 76c9 4 17 9 24 16' stroke='%23b9bcba' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M36 59c4 2 8 2 12-1M61 58c4 2 8 2 12-1' stroke='%232d3032' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M19 41c6 25 19 40 42 44-22 7-48-5-55-25-3-10 1-17 13-19Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E"></div><div><div class="name">小毛</div><div class="id">122353</div></div><div class="profile-switch"><div class="segmented"><button class="active" type="button" data-profile-scope="team">团队</button><div class="counter-pick dropdown" id="primaryCounterDropdown"><button type="button" data-profile-scope="primary"><span id="primaryCounterLabel">主责柜组</span></button><div class="dropdown-menu"><button class="active" type="button" data-counter-pick="主责柜组1" data-counter-kind="primary">主责柜组1</button><button type="button" data-counter-pick="主责柜组2" data-counter-kind="primary">主责柜组2</button><button type="button" data-counter-pick="主责柜组3" data-counter-kind="primary">主责柜组3</button></div></div><div class="counter-pick dropdown" id="counterPickDropdown"><button type="button" data-profile-scope="counter"><span id="counterPickLabel">柜组</span></button><div class="dropdown-menu"><button class="active" type="button" data-counter-pick="柜组1" data-counter-kind="counter">柜组1</button><button type="button" data-counter-pick="柜组2" data-counter-kind="counter">柜组2</button><button type="button" data-counter-pick="柜组3" data-counter-kind="counter">柜组3</button></div></div></div></div></div>
+          <div class="profile"><div class="avatar"><img alt="头像" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23f7f7f5'/%3E%3Cellipse cx='46' cy='54' rx='34' ry='28' fill='%23e7e8e4'/%3E%3Cpath d='M17 45C20 25 35 14 50 17c18 3 29 17 31 37 3 23-17 35-36 32-19-2-32-18-28-41Z' fill='%23d8d9d5'/%3E%3Cpath d='M23 45 14 24l23 11M67 36l21-12-8 25' fill='%23eef0ec' stroke='%239da1a1' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 23c18-12 41-12 59 7 3 6 4 13 4 22-20-23-45-26-68-10 0-8 1-14 5-19Z' fill='%2334383b' opacity='.9'/%3E%3Cpath d='M14 15c10 6 22 9 35 10M8 28c14 2 23 5 34 11M18 76c12-4 21-5 32-2M65 68c10-2 18-1 26 3' stroke='%239a9d9b' stroke-width='5' stroke-linecap='round' opacity='.45'/%3E%3Cpath d='M28 59c9 6 18 7 28 1M63 60c8 2 15 1 22-2' stroke='%23323638' stroke-width='2' stroke-linecap='round' opacity='.65'/%3E%3Cpath d='M51 63c3 0 5 2 5 4 0 3-4 5-7 4-3 0-5-3-4-5 1-2 3-3 6-3Z' fill='%23ec7d4e'/%3E%3Cpath d='M34 72c-11 0-20 5-28 11M39 75c-9 3-17 8-24 16M65 72c10 0 18 4 26 10M61 76c9 4 17 9 24 16' stroke='%23b9bcba' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M36 59c4 2 8 2 12-1M61 58c4 2 8 2 12-1' stroke='%232d3032' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M19 41c6 25 19 40 42 44-22 7-48-5-55-25-3-10 1-17 13-19Z' fill='%23ffffff' opacity='.55'/%3E%3C/svg%3E"></div><div><div class="name">小毛</div><div class="id">122353</div></div><div class="profile-switch"><button class="store-trigger" id="storeCascadeTrigger" type="button"><span>门店</span><span class="chev"></span></button></div></div>
           <div class="tabs"><button data-range="昨日">昨日</button><button class="active" data-range="今日">今日</button><button data-range="本月">本月</button><button data-range="本年">本年</button></div>
           <div class="period">统计周期： 2022-10-30 0:00:00~23:59:59</div>
           <div class="employee-pad">
@@ -251,6 +265,7 @@
             <div class="bar-card"><h2 class="section-title" id="barTitle">销售走势</h2><div class="chart-wrap" id="scopeChart" data-chart="bar"><svg viewBox="0 0 350 260" width="100%" height="100%" aria-label="销售走势柱状图"><g stroke="#e4e4e4"><line x1="58" y1="36" x2="326" y2="36"/><line x1="58" y1="78" x2="326" y2="78"/><line x1="58" y1="120" x2="326" y2="120"/><line x1="58" y1="162" x2="326" y2="162"/><line x1="58" y1="204" x2="326" y2="204"/></g><g fill="#40515d" font-size="13"><text x="26" y="40">250</text><text x="26" y="82">200</text><text x="26" y="124">150</text><text x="26" y="166">100</text><text x="34" y="208">50</text></g><g fill="#2f7df0"><rect x="78" y="162" width="28" height="56" rx="1"/><rect x="134" y="120" width="28" height="98" rx="1"/><rect x="190" y="54" width="28" height="164" rx="1"/><rect x="246" y="162" width="28" height="56" rx="1"/><rect x="302" y="132" width="28" height="86" rx="1"/></g></svg><div class="tooltip">本月：230</div></div></div>
             <section class="distribution"><div class="distribution-head"><h2 class="section-title" id="distributionTitle">销售情况</h2><div class="dropdown" id="distributionDropdown"><button class="dropdown-trigger" type="button"><span id="distributionLabel">按团队</span><span class="chev"></span></button><div class="dropdown-menu"><button class="active" type="button" data-distribution="team">按团队</button><button type="button" data-distribution="counter">按柜组</button><button type="button" data-distribution="staff">按员工</button><button type="button" data-distribution="category">按商品大类</button><button type="button" data-distribution="brand">按品牌</button></div></div></div><div class="table-scroller"><table><thead id="distributionHead"><tr><th>团队名称</th><th>转化率排名</th><th>成交金额</th><th>目标达成</th><th>进店客流</th><th>购物人数</th><th>转化率</th><th>连带率</th><th>件单价</th><th>客单价</th><th>销售数量</th><th>成交单数</th></tr></thead><tbody id="distributionBody"><tr><td>T3香化</td><td>8,878</td><td>11.6%</td><td>45,869,458.97</td><td>5,167</td><td>2.4</td><td>5,540</td><td>8,280</td><td>1,028</td><td>1</td></tr><tr><td>T3烟酒</td><td>7,920</td><td>12.4%</td><td>40,685,200.00</td><td>5,137</td><td>2.2</td><td>5,111</td><td>7,960</td><td>948</td><td>2</td></tr></tbody></table></div></section>
           </div>
+          <section class="cascade-panel" id="storeCascadePanel" aria-label="门店团队柜组选择"><header class="cascade-head"><button class="cascade-cancel" id="cascadeCancel" type="button">取消</button><strong>门店</strong><button id="cascadeConfirm" type="button">确定</button></header><div class="cascade-columns"><div class="cascade-column"><div class="cascade-column-title">门店</div><div id="storeCascadeStores"></div></div><div class="cascade-column"><div class="cascade-column-title">团队</div><div id="storeCascadeTeams"></div></div><div class="cascade-column"><div class="cascade-column-title">柜组</div><div id="storeCascadeCounters"></div></div></div></section>
         </section>
 
         <section class="page" id="returnPage">
@@ -297,23 +312,21 @@
         setDutyFreeScope(dutyFreeBtn.dataset.dutyFree);
         return;
       }
-      const counterPickBtn = event.target.closest('[data-counter-pick]');
-      if (counterPickBtn) {
-        const kind = counterPickBtn.dataset.counterKind;
-        const dropdownId = kind === 'primary' ? 'primaryCounterDropdown' : 'counterPickDropdown';
-        const labelId = kind === 'primary' ? 'primaryCounterLabel' : 'counterPickLabel';
-        document.getElementById(labelId).textContent = counterPickBtn.dataset.counterPick;
-        document.getElementById(dropdownId).querySelectorAll('[data-counter-pick]').forEach(btn => btn.classList.toggle('active', btn === counterPickBtn));
-        document.getElementById(dropdownId).classList.remove('open');
-        setProfileScope(kind);
+      const cascadeOption = event.target.closest('[data-cascade-level]');
+      if (cascadeOption) {
+        toggleCascadeOption(cascadeOption);
         return;
       }
-      const profileBtn = event.target.closest('[data-profile-scope]');
-      if (profileBtn) {
-        const scope = profileBtn.dataset.profileScope;
-        setProfileScope(scope);
-        if (scope === 'primary') document.getElementById('primaryCounterDropdown').classList.toggle('open');
-        if (scope === 'counter') document.getElementById('counterPickDropdown').classList.toggle('open');
+      if (event.target.closest('#storeCascadeTrigger')) {
+        openStoreCascade();
+        return;
+      }
+      if (event.target.closest('#cascadeCancel')) {
+        closeStoreCascade(false);
+        return;
+      }
+      if (event.target.closest('#cascadeConfirm')) {
+        closeStoreCascade(true);
         return;
       }
       const teamFilterBtn = event.target.closest('[data-team-filter]');
@@ -365,12 +378,24 @@
       if (targetBtn) showPage(targetBtn.dataset.target);
     });
 
+    const storeHierarchy = [
+      { id: '6868', name: '[6868]北京机场店', teams: [
+        { id: '686806', name: '[686806]精品团队', counters: ['[686806101]精品周转仓1', '[686806102]精品周转仓2', '[686806103]配饰周转仓', '[686806104]免税国产品', '[686806105]时尚品周转仓', '[686806106]百货周转仓'] },
+        { id: '686807', name: '[686807]香化团队', counters: ['[686807101]T3E14香化', '[686807102]T3E18香化', '[686807103]香化综合柜组'] },
+        { id: '686808', name: '[686808]手表团队', counters: ['[686808101]精品Chopard', '[686808102]精品Bvlgari', '[686808103]精品Omega'] }
+      ] },
+      { id: '7048', name: '[7048]新海店', teams: [{ id: '704801', name: '[704801]综合团队', counters: ['[70480101]综合柜组1', '[70480102]综合柜组2'] }] },
+      { id: '6922', name: '[6922]日月店', teams: [{ id: '692201', name: '[692201]免税团队', counters: ['[69220101]香化柜组', '[69220102]烟酒柜组'] }] },
+      { id: '6921', name: '[6921]博鳌店', teams: [{ id: '692101', name: '[692101]销售团队', counters: ['[69210101]精品柜组', '[69210102]食品柜组'] }] }
+    ];
+    let cascadeState = { storeIds: new Set(['6868']), teamIds: new Set(['686806']), counterNames: new Set(['[686806101]精品周转仓1']), activeStoreId: '6868', activeTeamId: '686806' };
+    let cascadeDraft;
     const teamNames = ['T3香化', 'T3烟酒', 'T3精品专卖', 'T3精品综合', 'T3入境'];
     const counterNames = ['[72222201]T3E14香化', '[72222401]T3E18香化', '[72221301]T3E03', '[72222501]T3E19', '[72221201]T3E02烟酒', '[72221501]T3E07', '[72222301]T3E15', '[72222901]T3E23', '[72221601]T3E0801精品Chloe', '[72221602]T3E0802精品Kenzo', '[72221603]T3E0803精品MCM', '[72221604]T3E0804精品Coach', '[72221605]T3E0805精品TB', '[72221607]T3E0807精品Fashion', '[72221801]T3E1001精品', '[72221704]T3E0904精品', '[72222801]T3E2201精品BV', '[72222802]T3E2202精品YSL', '[72222803]巴黎世家', '[72222804]T3E2204精品Burberry', '[72222805]T3E2205精品Moncler', '[72222806]T3E2206精品Ferragamo', '[72221401]T3E05精品太阳镜', '[72221606]T3E0806精品Montblanc', '[72221701]T3E0901精品', '[72221702]T3E0902精品', '[72221802]T3E1002精品', '[72221901]T3E1101精品TUMI', '[72221902]T3E1102', '[72222601]T3E2001精品Chopard', '[72222602]T3E2002精品Bvlgari', '[72222603]T3E2003精品Qeelin', '[72222604]T3E2004精品Omega', '[72222701]T3E2101', '[72222702]T3E2102', '[72223001]T3E24', '[72225101]T3CI1', '[72225102]T3CI2', '[72225103]T3CI3', '[72225104]T3CI4'];
     const categoryNames = ['[01]进口酒', '[03]进口香化', '[06]进口精品', '[07]进口食品', '[07]进口食品及百货', '[08]代理品牌商品', '[09]有税国产品', '[14]统购有税精品', '[15]退税精品', '[16]统购有税', '[19]有税进口酒', '[20]退税商品', '[24]海口自采有税', '[25]有税国产酒', '[26]免值品'];
     const brandNames = ['010001HENNESSY轩尼诗', '[010003] JOHNNIE WALKER 尊尼获加', '[010005] SMIRNOFF斯米诺', '[010007] GORDON\'S 哥顿', '[010009] BAILEY\'S 百利甜', '[010010] DOM PERIGNON唐培里侬', '[010011] MOET ET CHANDON 酩悦', '[010012] MARTELL 马爹利', '[010015] CHIVAS REGAL 芝华士', '[010016] ROYAL SALUTE皇家礼炮', '[010017] GLENLIVET 格兰威特', '[010018] WILD TURKEY 威凤凰', '[010019] JAMESON 尊美醇', '[010028] CUTTY SARK顺风', '[010045] REMY MARTIN 人头马'];
     const richColumns = ['转化率排名', '转化率', '成交金额', '目标达成', '进店客流', '购物人数', '连带率', '件单价', '客单价', '销售数量', '成交单数'];
-    const counterColumns = ['成交金额排名', ...richColumns.slice(1)];
+    const counterColumns = ['转化率排名', ...richColumns.slice(1)];
     const categoryColumns = ['成交金额', '购物人数', '转化率', '连带率', '件单价', '客单价', '销售数量', '成交单数', '销售占比'];
     const teamSalesData = {
       team: { label: '按团队', columns: ['团队名称', ...richColumns], rows: teamNames.map((name, index) => [name, index + 1, ['11.6%', '12.4%', '10.8%', '9.7%', '8.9%'][index], ['45,869,458.97', '40,685,200.00', '38,256,900.00', '35,920,680.00', '32,586,120.00'][index], ['50%', '48%', '46%', '43%', '40%'][index], ['8,878', '7,920', '7,256', '6,870', '6,320'][index], ['1,028', '948', '874', '792', '708'][index], ['2.4', '2.2', '2.1', '2.0', '1.9'][index], ['5,540', '5,111', '5,114', '5,191', '5,107'][index], ['44,620', '42,917', '43,772', '45,354', '46,026'][index], ['8,280', '7,960', '7,480', '6,920', '6,380'][index], ['1,028', '948', '874', '792', '708'][index]]) },
@@ -427,9 +452,10 @@
     function getTeamSalesData(type, range = teamTimeLabel.textContent) {
       const data = teamSalesData[type];
       if (range !== '今日') return data;
+      const columns = type === 'counter' ? data.columns.map((column, index) => index === 1 ? '成交金额排名' : column) : data.columns;
       const hiddenColumns = new Set(['进店客流', '转化率', '转化率排名']);
-      const visibleIndexes = data.columns.map((column, index) => hiddenColumns.has(column) ? -1 : index).filter(index => index >= 0);
-      return { ...data, columns: visibleIndexes.map(index => data.columns[index]), rows: data.rows.map(row => visibleIndexes.map(index => row[index])) };
+      const visibleIndexes = columns.map((column, index) => hiddenColumns.has(column) ? -1 : index).filter(index => index >= 0);
+      return { ...data, columns: visibleIndexes.map(index => columns[index]), rows: data.rows.map(row => visibleIndexes.map(index => row[index])) };
     }
     function updateTeamSalesOptions(range = teamTimeLabel.textContent, preferredType) {
       const types = range === '今日' ? ['counter', 'staff', 'category', 'brand'] : ['team', 'counter', 'staff', 'category', 'brand'];
@@ -440,15 +466,47 @@
       return document.querySelector('.tabs button.active')?.dataset.range || '今日';
     }
     function getActiveScope() {
-      return document.querySelector('[data-profile-scope].active')?.dataset.profileScope || 'team';
+      return 'team';
     }
-    function getSelectedCounterText() {
-      const selected = [...document.querySelectorAll('[data-counter-pick].active')].map(btn => btn.dataset.counterPick);
-      if (selected.length === document.querySelectorAll('[data-counter-pick]').length) return '主责柜组';
-      return selected.length === 1 ? selected[0] : `已选${selected.length}项`;
+    function cloneCascadeState(state) {
+      return { storeIds: new Set(state.storeIds), teamIds: new Set(state.teamIds), counterNames: new Set(state.counterNames), activeStoreId: state.activeStoreId, activeTeamId: state.activeTeamId };
     }
-    function updateCounterPickLabel() {
-      document.getElementById('counterPickLabel').textContent = getSelectedCounterText() === '主责柜组' ? '全部柜组' : getSelectedCounterText();
+    function cascadeOption(level, value, name, selected, active) {
+      return '<button type="button" class="cascade-option' + (selected ? ' selected' : '') + (active ? ' active' : '') + '" data-cascade-level="' + level + '" data-cascade-value="' + value + '"><span class="cascade-check"></span><span class="cascade-name">' + name + '</span></button>';
+    }
+    function renderStoreCascade() {
+      const store = storeHierarchy.find(item => item.id === cascadeDraft.activeStoreId) || storeHierarchy[0];
+      const team = store.teams.find(item => item.id === cascadeDraft.activeTeamId) || store.teams[0];
+      cascadeDraft.activeStoreId = store.id;
+      cascadeDraft.activeTeamId = team.id;
+      document.getElementById('storeCascadeStores').innerHTML = storeHierarchy.map(item => cascadeOption('store', item.id, item.name, cascadeDraft.storeIds.has(item.id), item.id === store.id)).join('');
+      document.getElementById('storeCascadeTeams').innerHTML = store.teams.map(item => cascadeOption('team', item.id, item.name, cascadeDraft.teamIds.has(item.id), item.id === team.id)).join('');
+      document.getElementById('storeCascadeCounters').innerHTML = team.counters.map(name => cascadeOption('counter', name, name, cascadeDraft.counterNames.has(name), false)).join('');
+    }
+    function openStoreCascade() {
+      cascadeDraft = cloneCascadeState(cascadeState);
+      renderStoreCascade();
+      document.getElementById('storeCascadePanel').classList.add('open');
+    }
+    function closeStoreCascade(confirm) {
+      if (confirm) cascadeState = cloneCascadeState(cascadeDraft);
+      document.getElementById('storeCascadePanel').classList.remove('open');
+    }
+    function toggleCascadeOption(option) {
+      const level = option.dataset.cascadeLevel;
+      const value = option.dataset.cascadeValue;
+      if (level === 'store') {
+        cascadeDraft.activeStoreId = value;
+        const store = storeHierarchy.find(item => item.id === value);
+        cascadeDraft.activeTeamId = store.teams[0].id;
+        cascadeDraft.storeIds.has(value) ? cascadeDraft.storeIds.delete(value) : cascadeDraft.storeIds.add(value);
+      } else if (level === 'team') {
+        cascadeDraft.activeTeamId = value;
+        cascadeDraft.teamIds.has(value) ? cascadeDraft.teamIds.delete(value) : cascadeDraft.teamIds.add(value);
+      } else {
+        cascadeDraft.counterNames.has(value) ? cascadeDraft.counterNames.delete(value) : cascadeDraft.counterNames.add(value);
+      }
+      renderStoreCascade();
     }
     function updateRangeTarget(scope = getActiveScope(), range = getActiveRange()) {
       const data = profileScopeData[scope];
@@ -502,7 +560,6 @@
       document.getElementById('targetTitle').textContent = data.targetTitle;
       data.targetText = '目标达成';
       updateRangeTarget(scope);
-      document.querySelectorAll('[data-profile-scope]').forEach(btn => btn.classList.toggle('active', btn.dataset.profileScope === scope));
       distributionTitle.textContent = '销售情况';
       updateDistributionOptions(scope, getActiveRange(), scope === 'team' ? 'team' : 'counter');
       document.getElementById('barTitle').textContent = '销售趋势';
@@ -527,11 +584,12 @@
     function getDistributionData(type, range = getActiveRange()) {
       const data = distributionData[type];
       if (range !== '今日') return data;
+      const columns = type === 'counter' ? data.columns.map((column, index) => index === 1 ? '成交金额排名' : column) : data.columns;
       const hiddenColumns = new Set(['进店客流', '转化率', '转化率排名']);
-      const visibleIndexes = data.columns.map((column, index) => hiddenColumns.has(column) ? -1 : index).filter(index => index >= 0);
+      const visibleIndexes = columns.map((column, index) => hiddenColumns.has(column) ? -1 : index).filter(index => index >= 0);
       return {
         ...data,
-        columns: visibleIndexes.map(index => data.columns[index]),
+        columns: visibleIndexes.map(index => columns[index]),
         rows: data.rows.map(row => visibleIndexes.map(index => row[index]))
       };
     }
